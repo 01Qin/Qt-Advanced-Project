@@ -1,34 +1,26 @@
 import QtQuick
 import QtQuick.VirtualKeyboard
+import QtQuick.Controls
 
-Window {
-    id: window
-    width: 640
-    height: 480
-    visible: true
-    title: qsTr("Hello World")
+Item {
+    width: parent.width
+    height: parent.height
 
-    InputPanel {
-        id: inputPanel
-        z: 99
-        y: window.height
-        width: window.width
+    Column {
+        anchors.centerIn: parent
+        spacing: 12
 
-        states: State {
-            name: "visible"
-            when: inputPanel.active
-            PropertyChanges {
-                inputPanel.y: window.height - inputPanel.height
-            }
+        Text {
+            text: "Smart Terrarium Dashboard"
+            font.pixelSize: 24
         }
-        transitions: Transition {
-            from: ""
-            to: "visible"
-            reversible: true
-            NumberAnimation {
-                properties: "y"
-                easing.type: Easing.InOutQuad
-            }
+
+        Text {
+            text: "Humidity: -- %"
+        }
+
+        Text {
+            text: "Temperature: -- C"
         }
     }
 }
