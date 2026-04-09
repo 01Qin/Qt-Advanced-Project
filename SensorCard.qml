@@ -1,30 +1,53 @@
 import QtQuick
 import QtQuick.Controls
 
-Rectangle {
+Item {
     width: 150
-    height: 100
-    radius: 10
-    color: "#2e7d32"
+    height: 180
 
-    property string label: value
-    property string value: value
-    property string unit: value
+    property string label: ""
+    property string value: ""
+    property string unit: ""
+    property url iconSource: ""
 
-    Column {
-        anchors.centerIn: parent
-        spacing: 4
+ // shadow
+    Rectangle{
+        anchors.fill: parent
+        radius: 20
+        y: 5
+        color: "#200000000"
+    }
 
-        Text {
-            id: name
-            text: label
-            color: "white"
-        }
+// card
+    Rectangle{
+        anchors.fill: parent
+        radius: 20
+        color: "#2e7d32"
 
-        Text {
-            text: value + " " + uint
-            font.pixelSize: 20
-            color: "white"
+        Column {
+            anchors.centerIn: parent
+            spacing: 10
+
+            Image {
+                source: iconSource
+                width: 36
+                height: 36
+                fillMode: Image.PreserveAspectFit
+                visible: iconSource !== ""
+            }
+
+            Text {
+                text: label
+                font.pixelSize: 14
+                color: "#c8e6c9"
+            }
+
+            Text {
+                text: value + " " + uint
+                font.pixelSize: 20
+                font.weight: Font.Bold
+                color: "white"
+            }
         }
     }
 }
