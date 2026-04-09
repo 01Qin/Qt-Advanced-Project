@@ -1,26 +1,27 @@
+#include "OpenMeteo.h"
 #include "EnvironmentModel.h"
+#include <QNetworkReply>
+#include <QJsonDocument>
+#include <QJsonObject>
 
-EnvironmentModel::EnvironmentModel(QObject *parent)
-    : QObject (parent) {}
-
-double EnvironmentModel::humidity () const {return m_humidity;}
-double EnvironmentModel::temperature () const {return m_temperature;}
-QString EnvironmentModel::source() const {return m_source;}
-
-void EnvironmentModel::setHumidity (double value){
-    if (m_humidity == value) return;
-    m_humidity = value;
-    emit dataChanged();
+OpenMeteo::OpenMeteo(EnvironmentModel *model, QObject *parent)
+    : QObject(parent), m_model(model){
+    m_updateTimer.setInterval(5000); // every 5 seo
+        connect (&m_updateTimer, &QTimer::timeout, this, &OpenMeteo::fetchData);
 }
 
-void EnvironmentModel::setTemperature(double value){
-    if(m_temperature == value) return;
-    m_temperature = value;
-    emit dataChanged();
+void OpenMeteo::start(){
+    m_model->setSource("Open-Meteo");
+    m_updateTimer.start();
+    fetchData();
 }
 
-void EnvironmentModel::setSource (const QString &value){
-    if (m_source == value) return;
-    m_source = value;
-    emit dataChanged();
-}
+void OpenMeteo::fetchData(){
+    QUrl url("url is needed"); // todo
+    QNetworkRequest request(url);
+    auto reply = m_network.get(request);
+
+    connect(reply, &QNetworkReply::finished, this, = {
+        const auto json = QJsonDocument::fromJson(reply->readAll()).object();
+    }
+            );}
