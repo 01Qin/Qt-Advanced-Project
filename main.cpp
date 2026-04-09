@@ -1,5 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include "EnvironmentModel.h"
+#include "OpenMeteo.h"
+#include <QQmlContext>
 
 int main(int argc, char *argv[])
 {
@@ -8,6 +11,13 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+
+    EnvironmentModel environment;
+    OpenMeteo meteo (&environment);
+    meteo.start();
+
+    engine.rootContext()->setContextProperty("environment", &environment);
+
     QObject::connect(
         &engine,
         &QQmlApplicationEngine::objectCreationFailed,
