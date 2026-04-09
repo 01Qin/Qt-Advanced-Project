@@ -26,7 +26,7 @@ void OpenMeteo::fetchData(){
         const auto current = json["current"].toObject();
 
         m_model->setTemperature(current["temperature_2m"].toDouble());
-        m_model->setHumidity(current["relative_humidity"].toDouble());
+        m_model->setHumidity(current["relative_humidity_2m"].toDouble());
         reply->deleteLater();
 
     });
