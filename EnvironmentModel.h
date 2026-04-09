@@ -6,9 +6,9 @@
 
 class EnvironmentModel : public QObject {
     Q_OBJECT
-    Q_PROPERTY(double humidity READ humidity WRITE setHumidity NOTIFY dataChanged)
-    Q_PROPERTY(double data READ data WRITE setData NOTIFY dataChanged)
-    Q_PROPERTY(QString data READ data WRITE setData NOTIFY dataChanged)
+    Q_PROPERTY(double humidity READ humidity NOTIFY dataChanged)
+    Q_PROPERTY(double temperature READ temperature NOTIFY dataChanged)
+    Q_PROPERTY(QString source READ source NOTIFY dataChanged)
 
 public:
     explicit EnvironmentModel (QObject *parent = nullptr);
