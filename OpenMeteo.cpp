@@ -21,7 +21,13 @@ void OpenMeteo::fetchData(){
     QNetworkRequest request(url);
     auto reply = m_network.get(request);
 
-    connect(reply, &QNetworkReply::finished, this, = {
+    connect(reply, &QNetworkReply::finished, this, [this,reply] {
         const auto json = QJsonDocument::fromJson(reply->readAll()).object();
-    }
-            );}
+        const auto current = json["current"].toObject();
+
+        m_model->setTemperature(current["temperature_2m"].toDouble());
+        m_model->setHumidity(current["relative_humidity"].toDouble());
+        reply->deleteLater();
+
+    });
+}
