@@ -7,18 +7,22 @@ Rectangle {
     radius: 10
     color: "#2e7d32"
 
+    property string label: value
+    property string value: value
+    property string unit: value
+
     Column {
         anchors.centerIn: parent
         spacing: 4
 
         Text {
             id: name
-            text: qsTr("Humidity")
+            text: label
             color: "white"
         }
 
         Text {
-            text: environment.humidity.toFixed(1) + " %"
+            text: value + " " + uint
             font.pixelSize: 20
             color: "white"
         }
