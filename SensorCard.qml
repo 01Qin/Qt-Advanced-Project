@@ -1,34 +1,26 @@
 import QtQuick
-import QtQuick.VirtualKeyboard
+import QtQuick.Controls
 
-Window {
-    id: window
-    width: 640
-    height: 480
-    visible: true
-    title: qsTr("Hello World")
+Rectangle {
+    width: 150
+    height: 100
+    radius: 10
+    color: "#2e7d32"
 
-    InputPanel {
-        id: inputPanel
-        z: 99
-        y: window.height
-        width: window.width
+    Column {
+        anchors.centerIn: parent
+        spacing: 4
 
-        states: State {
-            name: "visible"
-            when: inputPanel.active
-            PropertyChanges {
-                inputPanel.y: window.height - inputPanel.height
-            }
+        Text {
+            id: name
+            text: qsTr("Humidity")
+            color: "white"
         }
-        transitions: Transition {
-            from: ""
-            to: "visible"
-            reversible: true
-            NumberAnimation {
-                properties: "y"
-                easing.type: Easing.InOutQuad
-            }
+
+        Text {
+            text: environment.humidity.toFixed(1) + " %"
+            font.pixelSize: 20
+            color: "white"
         }
     }
 }
