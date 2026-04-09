@@ -11,19 +11,19 @@ Item {
         spacing: 12
 
     SensorCard{
-        Label: "Humidity"
+        label: "Humidity"
         value: environment.humidity.toFixed(1)
         unit: "%"
     }
 
     SensorCard{
-        Label: "Temperature"
+        label: "Temperature"
         value: environment.temperature.toFixed(1)
         unit: "C"
     }
     Text {
         id: name
-        text: qsTr("Source: " + environment.source)
+        text: "Source: " + environment.source
 
     }
 
