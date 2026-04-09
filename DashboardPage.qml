@@ -10,17 +10,10 @@ Item {
         anchors.centerIn: parent
         spacing: 12
 
-        Text {
-            text: "Smart Terrarium Dashboard"
-            font.pixelSize: 24
-        }
-
-        Text {
-            text: "Humidity: -- %"
-        }
-
-        Text {
-            text: "Temperature: -- C"
-        }
+    SensorCard{}
+    Text {
+        id: name
+        text: qsTr("Source: " + environment.source)
+    }
     }
 }
