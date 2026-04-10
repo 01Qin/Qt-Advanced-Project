@@ -32,6 +32,7 @@ Item {
                 source: iconSource
                 width: 36
                 height: 36
+                opacity: 0.9
                 fillMode: Image.PreserveAspectFit
                 visible: iconSource !== ""
             }
@@ -47,6 +48,13 @@ Item {
                 font.pixelSize: 20
                 font.weight: Font.Bold
                 color: "white"
+
+                Behavior on text {
+                    NumberAnimation{
+                        duration: 300
+                        easing.type: Easing.InOutQuad
+                    }
+                }
             }
         }
     }
