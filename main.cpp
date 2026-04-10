@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
     meteo.start();
 
     engine.rootContext()->setContextProperty("environment", &environment);
+    engine.rootContext()->setContextProperty("simulator", &meteo);
 
     QObject::connect(
         &engine,
