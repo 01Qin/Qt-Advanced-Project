@@ -45,14 +45,14 @@ Window {
                     label: "Humidity"
                     value: environment.humidity.toFixed(1)
                     unit: "%"
-                    iconSource:"humidity/humidity.svg"
+                    iconSource:"humidity/humidity.png"
                 }
 
                 SensorCard{
                     label: "Temperature"
                     value: environment.temperature.toFixed(1)
                     unit: "C"
-                    iconSource:"temp/medium-temperature-icon.png"
+                    iconSource:"temp/temperature.png"
                 }
             }
 
