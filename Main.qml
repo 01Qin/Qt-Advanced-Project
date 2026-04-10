@@ -89,5 +89,10 @@ Window {
             text: "Mist ON"
             enabled: false
         }
+
+        Button {
+            text: "Mist OFF"
+            enabled: false
+        }
     }
 }
