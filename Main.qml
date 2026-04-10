@@ -4,19 +4,11 @@ import QtQuick.Controls
 import QtQuick.Window
 
 Window {
-    width: 120
+    width: 1200
     height: 700
     visible: true
     title: qsTr("Smart Terrarium 🪴")
 
-    EnvironmentModel; {
-        id: environment
-    }
-
-    OpenMeteo{
-        id: simulator
-        environment: environment
-    }
 
     Rectangle{
         anchors.fill: parent
