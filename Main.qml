@@ -27,6 +27,7 @@ Window {
                     text: "Smart Terrarium 🪴"
                     font.pixelSize: 28
                     font.weight: Font.DemiBold
+                    color: "#1f2d1f"
                 }
 
                 Text {
@@ -43,16 +44,18 @@ Window {
 
                 SensorCard{
                     label: "Humidity"
-                    value: environment.humidity.toFixed(1)
+                    numericValue: environment.humidity
                     unit: "%"
                     iconSource:"humidity/humidity.png"
+                    cardColor: "#3f8f3f"
                 }
 
                 SensorCard{
                     label: "Temperature"
-                    value: environment.temperature.toFixed(1)
+                    numericValue: environment.temperature
                     unit: "C"
                     iconSource:"temp/temperature.png"
+                    cardColor: "#2e7d6b"
                 }
             }
 
