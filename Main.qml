@@ -98,41 +98,61 @@ Window {
 
             // metadata
             Text {
+                anchors.horizontalCenter: parent.horizontalCenter
                 text: "Source: " + environment.source
                 font.pixelSize: 12
                 color: "#8a9a8f"
             }
+
+            Item {
+                height: 1
+                width: 1
+            }
+
+            // control zone
+            Rectangle {
+                anchors.horizontalCenter: parent.horizontalCenter
+                height: 70
+                width: 520
+                radius: 20
+                color: "#ffffff"
+
+                Rectangle {
+                    anchors.fill: parent
+                    radius: 20
+                    y: 6
+                    color: "#20000000"
+                }
+
+                Row {
+                    anchors.bottom: parent.bottom
+                    spacing: 16
+
+                    Button {
+                        text: simulator.running ? "Stop Simulation" : "Start Simulation"
+                        onClicked: simulator.running ? simulator.stop() : simulator.start()
+
+                    }
+
+                    Button {
+                        text: "Auto Mode"
+                        enabled: false
+                    }
+
+                    Button {
+                        text: "Mist ON"
+                        enabled: false
+                    }
+
+                    Button {
+                        text: "Mist OFF"
+                        enabled: false
+                    }
+                }
+            }
         }
     }
 
-    // bottom control area
-    Row {
-        anchors.bottom: parent.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottomMargin: 20
-        spacing: 16
 
-        Button {
-            text: simulator.running ? "Stop Simulation" : "Start Simulation"
-            onClicked: {
-                simulator.running ? simulator.stop() : simulator.start()
-            }
-        }
-        Button {
-            text: "Auto Mode"
-            onClicked: {
-                // enable auto humidity control
-            }
-        }
 
-        Button {
-            text: "Mist ON"
-            enabled: false
-        }
-
-        Button {
-            text: "Mist OFF"
-            enabled: false
-        }
-    }
 }
