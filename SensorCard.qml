@@ -10,6 +10,7 @@ Item {
     property string unit: ""
     property url iconSource: ""
     property color cardColor: "#3a8f3a"
+    property real numericValue: 0
 
  // shadow
     Rectangle{
