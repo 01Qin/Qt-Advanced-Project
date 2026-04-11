@@ -4,14 +4,14 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
-OpenMeteo::OpenMeteo(EnvironmentModel *model, QObject *parent)
-    : QObject(parent), m_model(model){
+OpenMeteo::OpenMeteo(EnvironmentModel *environment, QObject *parent)
+    : QObject(parent), m_environment(environment){
     m_updateTimer.setInterval(5000); // every 5 sec
         connect (&m_updateTimer, &QTimer::timeout, this, &OpenMeteo::fetchData);
 }
 
 void OpenMeteo::start(){
-    m_model->setSource("Open-Meteo");
+    m_environment->setSource("Open-Meteo");
     m_updateTimer.start();
     fetchData();
 }
@@ -29,11 +29,21 @@ void OpenMeteo::fetchData(){
     auto reply = m_network.get(request);
 
     connect(reply, &QNetworkReply::finished, this, [this,reply] {
-        const auto json = QJsonDocument::fromJson(reply->readAll()).object();
-        const auto current = json["current"].toObject();
+        if (reply->error() != QNetworkReply::NoError){
+            reply->deleteLater();
+            return;
+        }
 
-        m_model->setTemperature(current["temperature_2m"].toDouble());
-        m_model->setHumidity(current["relative_humidity_2m"].toDouble());
+        const QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+        const QJsonObject root = doc.object();
+        const QJsonObject current = root["current"].toObject();
+
+        double temperature = current["temperature_2m"].toDouble();
+        double humidity = current["relative_humidity_2m"].toDouble();
+        m_environment->setTemperature(temperature);
+        m_environment->setHumidity(humidity);
+        m_environment->setSource("Open-Meteo");
+
         reply->deleteLater();
 
     });
