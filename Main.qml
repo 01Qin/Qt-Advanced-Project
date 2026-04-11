@@ -170,6 +170,10 @@ Window {
         }
     }
 
+    AlertDialog{
+        id: alertDialog
+    }
+
 
 
 }
