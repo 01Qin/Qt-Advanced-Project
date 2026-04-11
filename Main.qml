@@ -51,7 +51,7 @@ Window {
                     cardColor: "#3f8f3f"
                     active: activeMetric == "humidity"
                     onClicked: {
-                        activeMetric = activeMetriv === "humidity" ? "" : "humidity"
+                        activeMetric = "humidity"
                     }
                 }
 
@@ -62,9 +62,8 @@ Window {
                     iconSource:"temp/temperature.png"
                     cardColor: "#2e7d6b"
                     active: activeMetric === "temperature"
-                    onClicked: {
-                        activeMetric = activeMetriv === "temperature" ? "" : "temperature"
-                    }
+                    onClicked: activeMetric = "temperature"
+
                 }
             }
 
