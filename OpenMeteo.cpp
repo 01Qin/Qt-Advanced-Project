@@ -6,22 +6,26 @@
 
 OpenMeteo::OpenMeteo(EnvironmentModel *environment, QObject *parent)
     : QObject(parent), m_environment(environment){
-    m_updateTimer.setInterval(5000); // every 5 sec
-        connect (&m_updateTimer, &QTimer::timeout, this, &OpenMeteo::fetchData);
+    m_Timer.setInterval(5000); // every 5 sec
+    connect (&m_Timer, &QTimer::timeout, this, &OpenMeteo::fetchData);
 }
 
 void OpenMeteo::start(){
-    m_environment->setSource("Open-Meteo");
-    m_updateTimer.start();
     fetchData();
+    m_Timer.start();
+
+}
+void OpenMeteo::stop(){
+
+    m_Timer.stop();
+
 }
 
 void OpenMeteo::fetchData(){
     QUrl url("https://api.open-meteo.com/v1/forecast"
                 "?latitude=52.52"
                 "&longitude=13.41"
-                "&current=temperature_2m,"
-                "relative_humidity_2m"
+                "&current=temperature_2m,relative_humidity_2m"
 
              );
 
