@@ -6,7 +6,8 @@
 
 OpenMeteo::OpenMeteo(EnvironmentModel *environment, QObject *parent)
     : QObject(parent), m_environment(environment){
-    m_Timer.setInterval(5000); // every 5 sec
+
+    m_Timer.setInterval(5000); // fresh every 5 sec
     connect (&m_Timer, &QTimer::timeout, this, &OpenMeteo::fetchData);
 }
 
