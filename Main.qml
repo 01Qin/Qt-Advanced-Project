@@ -9,6 +9,12 @@ Window {
     visible: true
     title: qsTr("Smart Terrarium 🪴")
 
+    property real minHumidity: 60
+    property real maxHumidity: 85
+    property real minTemperature: 18
+    property real maxTemperature: 26
+
+
     // background
     Rectangle{
         anchors.fill: parent
