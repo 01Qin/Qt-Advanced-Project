@@ -14,6 +14,10 @@ Window {
     property real minTemperature: 18
     property real maxTemperature: 26
 
+    property bool humidityLow: environment.humidity < minHumidity
+    property bool humidityHigh: environment.humidity > maxHumidity
+    property bool temperatureLow: environment.temperature < minTemperature
+    property bool temperatureHigh: environment.temperature > maxTemperature
 
     // background
     Rectangle{
