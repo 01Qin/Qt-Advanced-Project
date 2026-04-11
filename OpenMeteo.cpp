@@ -17,7 +17,14 @@ void OpenMeteo::start(){
 }
 
 void OpenMeteo::fetchData(){
-    QUrl url("url is needed"); // todo
+    QUrl url("https://api.open-meteo.com/v1/forecast"
+                "?latitude=52.52"
+                "&longitude=13.41"
+                "&current=temperature_2m,"
+                "relative_humidity_2m"
+
+             );
+
     QNetworkRequest request(url);
     auto reply = m_network.get(request);
 
