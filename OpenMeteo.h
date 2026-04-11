@@ -13,11 +13,12 @@ class OpenMeteo : public QObject {
 
 public:
     explicit OpenMeteo (EnvironmentModel *environment, QObject *parent = nullptr);
-    void start();
+    void start(); // start periodic update
+    void stop();
 
 private:
     QNetworkAccessManager m_network;
-    QTimer m_updateTimer;
+    QTimer m_Timer;
     EnvironmentModel *m_environment;
 
     void fetchData();
