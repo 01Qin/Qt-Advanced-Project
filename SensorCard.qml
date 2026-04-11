@@ -11,12 +11,14 @@ Item {
     property url iconSource: ""
     property color cardColor: "#3a8f3a"
     property real numericValue: 0
+    property bool active: false
+    signal clicked()
 
  // shadow
     Rectangle{
         anchors.fill: parent
         radius: 20
-        y: 5
+        y: active ? 14 : 10
         color: "#200000000"
     }
 
@@ -24,7 +26,7 @@ Item {
     Rectangle{
         anchors.fill: parent
         radius: 20
-        color: "#2e7d32"
+        color: active ? cardColor : Qt.darker(cardColor, 1.3)
 
         Column {
             anchors.centerIn: parent
@@ -34,7 +36,7 @@ Item {
                 source: iconSource
                 width: 36
                 height: 36
-                opacity: 0.9
+                opacity: active ? 1.0 : 0.5
                 fillMode: Image.PreserveAspectFit
                 visible: iconSource !== ""
             }
@@ -46,7 +48,8 @@ Item {
             }
 
             Text {
-                text: value + " " + uint
+                visible: active
+                text: Math.round(numericValue) + " " + uint
                 font.pixelSize: 20
                 font.weight: Font.Bold
                 color: "white"
@@ -58,6 +61,27 @@ Item {
                     }
                 }
             }
+        }
+    }
+
+    MouseArea{
+        anchors.fill: parent
+        onClicked: parent.clicked()
+        cursorShape: Qt.PointingHandCursor
+    }
+
+
+    Behavior on active {
+        NumberAnimation{
+            duration: 300
+            easing.type: Easing.InOutQuad
+        }
+    }
+
+    Behavior on numericValue {
+        NumberAnimation{
+            duration: 500
+            easing.type: Easing.InOutQuad
         }
     }
 }
