@@ -49,6 +49,10 @@ Window {
                     unit: "%"
                     iconSource:"humidity/humidity.png"
                     cardColor: "#3f8f3f"
+                    active: activeMetric == "humidity"
+                    onClicked: {
+                        activeMetric = activeMetriv === "humidity" ? "" : "humidity"
+                    }
                 }
 
                 SensorCard{
@@ -57,6 +61,10 @@ Window {
                     unit: "C"
                     iconSource:"temp/temperature.png"
                     cardColor: "#2e7d6b"
+                    active: activeMetric === "temperature"
+                    onClicked: {
+                        activeMetric = activeMetriv === "temperature" ? "" : "temperature"
+                    }
                 }
             }
 
