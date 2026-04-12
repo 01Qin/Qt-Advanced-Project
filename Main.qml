@@ -174,6 +174,44 @@ Window {
         id: alertDialog
     }
 
+    // Humidity alerts
+    onHumidityHighChanged: {
+        if (humidityHigh){
+            alertDialog.titleText = "Mold Risk"
+            alertDialog.messageText = "humidity is too high (" + Math.round(environment.humidity) +
+                    "%).\nRisk of mold growth."
+            alertDialog.open()
+        }
+    }
+
+    onHumidityLowChanged: {
+        if (humidityLow){
+            alertDialog.titleText = "Low Humidity"
+            alertDialog.messageText = "humidity is too low (" + Math.round(environment.humidity) +
+                    "%).\nPlants may dry out."
+            alertDialog.open()
+        }
+    }
+
+    // Temperature alerts
+    onTemperatureHighChanged: {
+        if (temperatureHigh){
+            alertDialog.titleText = "High Temperature"
+            alertDialog.messageText = "Temperature is too high (" + environment.temperature.toFixed(1) +
+            "C)."
+            alertDialog.open()
+        }
+    }
+
+    onTemperatureLowChanged: {
+        if (temperatureLow){
+            alertDialog.titleText = "Low Temperature"
+            alertDialog.messageText = "Temperature is too low (" + environment.temperature.toFixed(1) +
+            "C)."
+            alertDialog.open()
+        }
+    }
+
 
 
 }
