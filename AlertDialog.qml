@@ -68,6 +68,29 @@ Dialog {
             width: 300
             color: "#444"
         }
+
+        Button {
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: "OK"
+            width: 120
+            height: 40
+
+            background: Rectangle {
+                radius: 12
+                color: serverity === "critical" ? "#c62828" : "#efc600"
+            }
+
+            contentItem: Text {
+                text: "OK"
+                color: "white"
+                font.pixelSize: 14
+                font.weight: Font.Medium
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignHCenter
+            }
+
+            onClicked: dialog.close()
+        }
     }
 
 
