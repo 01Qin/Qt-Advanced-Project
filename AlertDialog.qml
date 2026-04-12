@@ -52,14 +52,23 @@ Dialog {
                 color: serverity === "critical" ? "#c62828" : "#efc600"
             }
         }
+
+        // divider
+        Rectangle {
+            width: parent.width
+            height: 1
+            color: "#e0e0e0"
+        }
+
+        // message
+        Text {
+            text: messageText
+            wrapMode: Text.wrapMode
+            font.pixelSize: 14
+            width: 300
+            color: "#444"
+        }
     }
 
-    Text {
-
-        text: messageText
-        wrapMode: Text.wrapMode
-        width: 300
-
-    }
 
 }
