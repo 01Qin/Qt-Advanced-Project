@@ -18,6 +18,7 @@ Window {
     property bool humidityHigh: environment.humidity > maxHumidity
     property bool temperatureLow: environment.temperature < minTemperature
     property bool temperatureHigh: environment.temperature > maxTemperature
+    property bool alertShown: false
 
     // background
     Rectangle{
@@ -182,6 +183,10 @@ Window {
                     "%).\nRisk of mold growth."
             alertDialog.open()
         }
+
+        if (!humidityHigh){
+            alertShown = false
+        }
     }
 
     onHumidityLowChanged: {
@@ -190,6 +195,10 @@ Window {
             alertDialog.messageText = "humidity is too low (" + Math.round(environment.humidity) +
                     "%).\nPlants may dry out."
             alertDialog.open()
+        }
+
+        if (!humidityLow){
+            alertShown = false
         }
     }
 
@@ -201,6 +210,9 @@ Window {
             "C)."
             alertDialog.open()
         }
+        if (!temperatureHigh){
+            alertShown= false
+        }
     }
 
     onTemperatureLowChanged: {
@@ -209,6 +221,9 @@ Window {
             alertDialog.messageText = "Temperature is too low (" + environment.temperature.toFixed(1) +
             "C)."
             alertDialog.open()
+        }
+        if (!temperatureLow){
+            alertShown = false
         }
     }
 
