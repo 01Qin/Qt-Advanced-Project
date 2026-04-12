@@ -20,6 +20,16 @@ Window {
     property bool temperatureHigh: environment.temperature > maxTemperature
     property bool alertShown: false
 
+    property color humidityColor:
+        humidityHigh ? "#c62828" : // mold risk
+        humidityLow ? "#ef6c00" : // too dry
+                      "#4CAF50" // healthy
+
+    property color temperatureColor:
+        temperatureHigh ? "#c62828" : // too hot
+        temperatureLow ? "#1565c0" : // too clod
+                      "#26A69A" // healthy
+
     // background
     Rectangle{
         anchors.fill: parent
