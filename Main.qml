@@ -49,19 +49,25 @@ Window {
             // Header
             Column {
                 spacing: 4
+                width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 Text {
-                    text: "Smart Terrarium 🪴"
+                    text: "🪴 Smart Terrarium 🪴"
                     font.pixelSize: 28
                     font.weight: Font.DemiBold
                     color: "white"
+                    horizontalAlignment: Text.AlignHCenter
+                    width: parent.width
                 }
 
                 Text {
                     text: "Live environment monitoring"
                     font.pixelSize: 14
                     color: "#fffffe"
+                    horizontalAlignment: Text.AlignHCenter
+                    width: parent.width
+
                 }
             }
 
