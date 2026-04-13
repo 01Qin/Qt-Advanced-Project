@@ -152,17 +152,12 @@ Window {
                 height: 70
                 width: 520
                 radius: 20
+                color: "transparent"
 
-
-                Rectangle {
-                    anchors.fill: parent
-                    radius: 20
-                    y: 6
-
-                }
 
                 Row {
                     anchors.bottom: parent.bottom
+                    anchors.centerIn: parent
                     spacing: 16
 
 
@@ -170,21 +165,69 @@ Window {
                         text: simulator.running ? "Stop Simulation" : "Start Simulation"
                         onClicked: simulator.running ? simulator.stop() : simulator.start()
 
+                        background: Rectangle {
+                            radius: 8
+                            color: "#f9bc60"
+                        }
+
+                        contentItem: Text {
+                            text: parent.text
+                            color: "#001e1d"
+                            font.pixelSize: 13
+                        }
+
                     }
 
                     Button {
                         text: "Auto Mode"
                         enabled: false
+
+                        background: Rectangle {
+                            radius: 8
+                            color: "#f9bc60"
+                        }
+
+                        contentItem: Text {
+                            text: parent.text
+                            color: "#001e1d"
+                            font.pixelSize: 13
+                        }
+
+
                     }
 
                     Button {
                         text: "Mist ON"
                         enabled: false
+
+                        background: Rectangle {
+                            radius: 8
+                            color: "#f9bc60"
+                        }
+
+                        contentItem: Text {
+                            text: parent.text
+                            color: "#001e1d"
+                            font.pixelSize: 13
+                        }
+
                     }
 
                     Button {
                         text: "Mist OFF"
                         enabled: false
+
+                        background: Rectangle {
+                            radius: 8
+                            color: "#f9bc60"
+                        }
+
+                        contentItem: Text {
+                            text: parent.text
+                            color: "#001e1d"
+                            font.pixelSize: 13
+                        }
+
                     }
                 }
             }
