@@ -9,6 +9,7 @@ Window {
     visible: true
     title: qsTr("Smart Terrarium 🪴")
 
+
     property real minHumidity: 60
     property real maxHumidity: 85
     property real minTemperature: 18
@@ -31,9 +32,14 @@ Window {
                       "#26A69A" // healthy
 
     // background
-    Rectangle{
+    Item {
         anchors.fill: parent
-        color: "#f2f6f3"
+
+        Image {
+            id: backgroundImage
+            anchors.fill: parent
+            source: "images/background.jpg"
+        }
 
         Column {
             anchors.centerIn: parent
