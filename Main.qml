@@ -78,6 +78,7 @@ Window {
 
                 SensorCard{
                     label: "Humidity"
+
                     numericValue: environment.humidity
                     unit: "%"
                     iconSource:"humidity/humidity.png"
