@@ -22,14 +22,14 @@ Window {
     property bool alertShown: false
 
     property color humidityColor:
-        humidityHigh ? "#c62828" : // mold risk
-        humidityLow ? "#ef6c00" : // too dry
-                      "#4CAF50" // healthy
+        humidityHigh ? "#e16162" : // mold risk
+        humidityLow ? "#f9bc60" : // too dry
+                      "#abd1c6" // healthy
 
     property color temperatureColor:
-        temperatureHigh ? "#c62828" : // too hot
-        temperatureLow ? "#1565c0" : // too clod
-                      "#26A69A" // healthy
+        temperatureHigh ? "#e16162" : // too hot
+        temperatureLow ? "#001e1d" : // too clod
+                      "#abd1c6" // healthy
 
     // background
     Item {
