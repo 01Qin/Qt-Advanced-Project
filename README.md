@@ -10,7 +10,7 @@
 A modern **Qt Quick (QML + C++) dashboard** for monitoring terrarium.  
 The application displays live **humidity** and **temperature** data, visually highlights safe and dangerous conditions, and provides a clean, touch‑friendly user interface inspired by real industrial dashboards.
 
-The project currently uses **Open‑Meteo** as a simulated data source and is designed to seamlessly transition to **real sensors via MQTT or ESP32** in the future.
+The project currently uses **Open‑Meteo** as a simulated data source and is designed to seamlessly transition to **real sensors via MQTT or Raspberry pi** in the future.
 
 ---
 
