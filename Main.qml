@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.VirtualKeyboard
 import QtQuick.Controls
 import QtQuick.Window
+import QtCharts
 
 Window {
     width: 1200
