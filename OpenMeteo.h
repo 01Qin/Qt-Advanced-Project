@@ -22,6 +22,7 @@ private:
     EnvironmentModel *m_environment;
 
     void fetchData();
+    void fetchHistoryData();
 };
 
 #endif // OPENMETEO_H
