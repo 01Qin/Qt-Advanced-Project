@@ -69,8 +69,8 @@ Window {
                     numericValue: environment.humidity
                     unit: "%"
                     iconSource:"humidity/humidity.png"
-                    cardColor: "#3f8f3f"
-                    active: activeMetric == "humidity"
+                    cardColor: humidityColor
+                    active: activeMetric === "humidity" ? "" : "humidity"
                     onClicked: {
                         activeMetric = "humidity"
                     }
@@ -81,9 +81,9 @@ Window {
                     numericValue: environment.temperature
                     unit: "C"
                     iconSource:"temp/temperature.png"
-                    cardColor: "#2e7d6b"
+                    cardColor: temperatureColor
                     active: activeMetric === "temperature"
-                    onClicked: activeMetric = "temperature"
+                    onClicked: activeMetric = "temperature" ? "" : "temperature"
 
                 }
             }
