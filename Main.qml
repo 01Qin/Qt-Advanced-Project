@@ -55,13 +55,13 @@ Window {
                     text: "Smart Terrarium 🪴"
                     font.pixelSize: 28
                     font.weight: Font.DemiBold
-                    color: "#1f2d1f"
+                    color: "white"
                 }
 
                 Text {
                     text: "Live environment monitoring"
                     font.pixelSize: 14
-                    color: "#6b7b6f"
+                    color: "#fffffe"
                 }
             }
 
