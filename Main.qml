@@ -28,7 +28,7 @@ Window {
 
     property color temperatureColor:
         temperatureHigh ? "#e16162" : // too hot
-        temperatureLow ? "#001e1d" : // too clod
+        temperatureLow ? "#004643" : // too clod
                       "#abd1c6" // healthy
 
     // background
