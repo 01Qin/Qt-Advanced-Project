@@ -84,4 +84,14 @@ Item {
             easing.type: Easing.InOutQuad
         }
     }
+
+    Behavior on cardColor {
+
+        ColorAnimation {
+            from: "#3a8f3a"
+            to: "#c62828"
+            duration: 400
+            easing.type: Easing.InOutQuad
+        }
+    }
 }
