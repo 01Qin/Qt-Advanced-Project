@@ -13,13 +13,13 @@ Window {
 
     property real minHumidity: 60
     property real maxHumidity: 85
-    property real minTemperature: 18
-    property real maxTemperature: 26
+    property real minTemp: 18
+    property real maxTemp: 26
 
     property bool humidityLow: environment.humidity < minHumidity
     property bool humidityHigh: environment.humidity > maxHumidity
-    property bool temperatureLow: environment.temperature < minTemperature
-    property bool temperatureHigh: environment.temperature > maxTemperature
+    property bool tempLow: environment.temp < minTemp
+    property bool tempHigh: environment.temp > maxTemp
     property bool alertShown: false
 
     property color humidityColor:
@@ -27,9 +27,9 @@ Window {
         humidityLow ? "#f9bc60" : // too dry
                       "#abd1c6" // healthy
 
-    property color temperatureColor:
-        temperatureHigh ? "#e16162" : // too hot
-        temperatureLow ? "#004643" : // too clod
+    property color tempColor:
+        tempHigh ? "#e16162" : // too hot
+        tempLow ? "#004643" : // too clod
                       "#abd1c6" // healthy
 
     // background
@@ -92,10 +92,10 @@ Window {
 
                 SensorCard{
                     label: "Temperature"
-                    numericValue: environment.temperature
+                    numericValue: environment.temp
                     unit: "C"
                     iconSource:"temp/temperature.png"
-                    cardColor: temperatureColor
+                    cardColor: tempColor
                     active: activeMetric === "temperature"
                     onClicked: activeMetric = "temperature" ? "" : "temperature"
 
@@ -274,10 +274,10 @@ Window {
     }
 
     // Temperature alerts
-    onTemperatureHighChanged: {
+    onTempHighChanged: {
         if (temperatureHigh){
             alertDialog.titleText = "High Temperature"
-            alertDialog.messageText = "Temperature is too high (" + environment.temperature.toFixed(1) +
+            alertDialog.messageText = "Temperature is too high (" + environment.temp.toFixed(1) +
             "C)."
             alertDialog.open()
         }
@@ -286,14 +286,14 @@ Window {
         }
     }
 
-    onTemperatureLowChanged: {
-        if (temperatureLow){
+    onTempLowChanged: {
+        if (tempLow){
             alertDialog.titleText = "Low Temperature"
-            alertDialog.messageText = "Temperature is too low (" + environment.temperature.toFixed(1) +
+            alertDialog.messageText = "Temperature is too low (" + environment.temp.toFixed(1) +
             "C)."
             alertDialog.open()
         }
-        if (!temperatureLow){
+        if (!tempLow){
             alertShown = false
         }
     }
