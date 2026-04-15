@@ -81,18 +81,13 @@ void OpenMeteo::fetchHistoryData(){
         QJsonArray tempMax = daily["temperature_2m_max"].toArray();
         QJsonArray humidityMean = daily["relative_humidity_2m_mean"].toArray();
 
-        QVariantList tempHistory;
-        QVariantList humidityHistory;
+        for (int i = 0; i < tempMax.size() && i < humidityMean.size(); ++i){
+            m_environment->setTemp(tempMax[i].toDouble());
+            m_environment->setHumidity(humidityMean[i].toDouble());
 
-        for (int i =0; i < tempMax.size(); i++){
-            tempHistory.append(tempMax[i].toDouble());
-            humidityHistory.append(humidityMean[i].toDouble());
-        }
-
-        m_environment->setTempHistory(tempHistory);
-        m_environment->setHumidityHistory(humidityHistory);
 
         reply->deleteLater();
+        }
 
     });
 }
