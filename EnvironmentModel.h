@@ -3,34 +3,44 @@
 
 #pragma once
 #include <QObject>
+#include <QVariantList>
 
 class EnvironmentModel : public QObject {
     Q_OBJECT
-    Q_PROPERTY(double humidity READ humidity NOTIFY dataChanged)
-    Q_PROPERTY(double temperature READ temperature NOTIFY dataChanged)
-    Q_PROPERTY(QString source READ source NOTIFY dataChanged)
-    Q_PROPERTY(QVarianList temperatureHistory READ temperatureHistoryy NOTIFY historyChanged)
-    Q_PROPERTY(QVarianList humidiyHistory READ humidityHistoryy NOTIFY historyChanged)
+    Q_PROPERTY(double humidity READ humidity WRITE setHumidity NOTIFY humidityChanged)
+    Q_PROPERTY(double temp READ temp WRITE setTemp NOTIFY tempChanged)
+    Q_PROPERTY(QString source READ source WRITE setSource NOTIFY sourceChanged)
+    Q_PROPERTY(QVariantList tempHistory READ tempHistory NOTIFY tempHistoryChanged)
+    Q_PROPERTY(QVariantList humidityHistory READ humidityHistory NOTIFY humidityHistoryChanged)
 
 public:
     explicit EnvironmentModel (QObject *parent = nullptr);
+
+    // Getters
     double humidity() const;
-    double temperature() const;
+    double temp() const;
     QString source() const;
+    QVariantList tempHistory() const;
+    QVariantList humidityHistory() const;
 
-
+public slots:
     void setHumidity(double value);
-    void setTemperature (double value);
+    void setTemp (double value);
     void setSource (const QString &value);
 
 signals:
-    void dataChanged();
+    void humidityChanged(double value);
+    void tempChanged(double value);
+    void sourceChanged(const QString &value);
+    void tempHistoryChanged();
+    void humidityHistoryChanged();
+
 
 private:
     double m_humidity = 0.0;
-    double m_temperature = 0.0;
+    double m_temp = 0.0;
     QString m_source = "Unknown";
-    QVariantList m_temperatureHistory;
+    QVariantList m_tempHistory;
     QVariantList m_humidityHistory;
 };
 
