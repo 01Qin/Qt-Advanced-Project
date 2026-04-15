@@ -16,10 +16,10 @@ Window {
     property real minTemp: 18
     property real maxTemp: 26
 
-    property bool humidityLow: environment.humidity < minHumidity
-    property bool humidityHigh: environment.humidity > maxHumidity
-    property bool tempLow: environment.temp < minTemp
-    property bool tempHigh: environment.temp > maxTemp
+    property bool humidityLow: environment.valid && environment.humidity < minHumidity
+    property bool humidityHigh: environment.valid && environment.humidity > maxHumidity
+    property bool tempLow: environment.valid && environment.temp < minTemp
+    property bool tempHigh: environment.valid && environment.temp > maxTemp
     property bool alertShown: false
 
     property color humidityColor:
@@ -80,7 +80,7 @@ Window {
                 SensorCard{
                     label: "Humidity"
 
-                    numericValue: environment.humidity
+                    numericValue: environment.valid ? environment.humidity : NaN
                     unit: "%"
                     iconSource:"humidity/humidity.png"
                     cardColor: humidityColor
@@ -92,7 +92,7 @@ Window {
 
                 SensorCard{
                     label: "Temperature"
-                    numericValue: environment.temp
+                    numericValue: environment.valid ? environment.temp : NaN
                     unit: "C"
                     iconSource:"temp/temperature.png"
                     cardColor: tempColor
