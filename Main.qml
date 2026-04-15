@@ -93,7 +93,7 @@ Window {
                 SensorCard{
                     label: "Temperature"
                     numericValue: environment.valid ? environment.temp : NaN
-                    unit: "C"
+                    unit: "°C"
                     iconSource:"temp/temperature.png"
                     cardColor: tempColor
                     active: activeMetric === "temperature"
@@ -278,7 +278,7 @@ Window {
         if (temperatureHigh){
             alertDialog.titleText = "High Temperature"
             alertDialog.messageText = "Temperature is too high (" + environment.temp.toFixed(1) +
-            "C)."
+            "°C)."
             alertDialog.open()
         }
         if (!temperatureHigh){
@@ -290,7 +290,7 @@ Window {
         if (tempLow){
             alertDialog.titleText = "Low Temperature"
             alertDialog.messageText = "Temperature is too low (" + environment.temp.toFixed(1) +
-            "C)."
+            "°C)."
             alertDialog.open()
         }
         if (!tempLow){
