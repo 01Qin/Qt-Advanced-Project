@@ -49,7 +49,7 @@ Item {
 
             Text {
                 visible: active
-                text: Math.round(numericValue) + " " + uint
+                text: Math.round(numericValue) + " " + unit
                 font.pixelSize: 20
                 font.weight: Font.Bold
                 color: "white"
