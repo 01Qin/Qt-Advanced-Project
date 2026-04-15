@@ -6,7 +6,6 @@ Item {
     height: 180
 
     property string label: ""
-    property string value: ""
     property string unit: ""
     property url iconSource: ""
     property color cardColor: "#3a8f3a"
@@ -48,7 +47,7 @@ Item {
             }
 
             Text {
-                visible: active
+                // visible:true
                 text: Math.round(numericValue) + " " + unit
                 font.pixelSize: 20
                 font.weight: Font.Bold
