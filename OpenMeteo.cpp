@@ -3,6 +3,7 @@
 #include <QNetworkReply>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 
 OpenMeteo::OpenMeteo(EnvironmentModel *environment, QObject *parent)
     : QObject(parent), m_environment(environment){
@@ -25,8 +26,8 @@ void OpenMeteo::stop(){
 
 void OpenMeteo::fetchData(){
     QUrl url("https://api.open-meteo.com/v1/forecast"
-                "?latitude=52.52&longitude=13.41"
-                "&current=temperature_2m,relative_humidity_2m"
+             "?latitude=52.52&longitude=13.41"
+             "&current=temperature_2m,relative_humidity_2m"
 
              );
 
@@ -43,9 +44,9 @@ void OpenMeteo::fetchData(){
         const QJsonObject root = doc.object();
         const QJsonObject current = root["current"].toObject();
 
-        double temperature = current["temperature_2m"].toDouble();
+        double temp = current["temperature_2m"].toDouble();
         double humidity = current["relative_humidity_2m"].toDouble();
-        m_environment->setTemperature(temperature);
+        m_environment->setTemp(temp);
         m_environment->setHumidity(humidity);
         m_environment->setSource("Open-Meteo");
 
@@ -88,7 +89,7 @@ void OpenMeteo::fetchHistoryData(){
             humidityHistory.append(humidityMean[i].toDouble());
         }
 
-        m_environment->setTemperatureHistory(tempHistory);
+        m_environment->setTempHistory(tempHistory);
         m_environment->setHumidityHistory(humidityHistory);
 
         reply->deleteLater();
