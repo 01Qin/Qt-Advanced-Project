@@ -122,13 +122,13 @@ Window {
                     color: environment.humidity > 85 ? "#c62828" : "#fffffe"
                 }
 
-                Text {
+                // Text {
 
-                    text: qsTr("Mode: AUTO")
-                    font.pixelSize: 13
-                    font.bold: true
-                    color: "#fffffe"
-                }
+                //     text: qsTr("Mode: AUTO")
+                //     font.pixelSize: 13
+                //     font.bold: true
+                //     color: "#fffffe"
+                // }
 
                 Text {
                     text: qsTr("Mode: Online")
@@ -169,74 +169,74 @@ Window {
                     spacing: 16
 
 
-                    Button {
-                        text: simulator.running ? "Stop Simulation" : "Start Simulation"
-                        onClicked: simulator.running ? simulator.stop() : simulator.start()
+                    // Button {
+                    //     text: simulator.running ? "Stop Simulation" : "Start Simulation"
+                    //     onClicked: simulator.running ? simulator.stop() : simulator.start()
 
-                        background: Rectangle {
-                            radius: 8
-                            color: "#f9bc60"
-                        }
+                    //     background: Rectangle {
+                    //         radius: 8
+                    //         color: "#f9bc60"
+                    //     }
 
-                        contentItem: Text {
-                            text: parent.text
-                            color: "#001e1d"
-                            font.pixelSize: 13
-                        }
+                    //     contentItem: Text {
+                    //         text: parent.text
+                    //         color: "#001e1d"
+                    //         font.pixelSize: 13
+                    //     }
 
-                    }
+                    // }
 
-                    Button {
-                        text: "Auto Mode"
-                        enabled: false
+                    // Button {
+                    //     text: "Auto Mode"
+                    //     enabled: false
 
-                        background: Rectangle {
-                            radius: 8
-                            color: "#f9bc60"
-                        }
+                    //     background: Rectangle {
+                    //         radius: 8
+                    //         color: "#f9bc60"
+                    //     }
 
-                        contentItem: Text {
-                            text: parent.text
-                            color: "#001e1d"
-                            font.pixelSize: 13
-                        }
+                    //     contentItem: Text {
+                    //         text: parent.text
+                    //         color: "#001e1d"
+                    //         font.pixelSize: 13
+                    //     }
 
 
-                    }
+                    // }
 
-                    Button {
-                        text: "Mist ON"
-                        enabled: false
+                    // Button {
+                    //     text: "Mist ON"
+                    //     enabled: false
 
-                        background: Rectangle {
-                            radius: 8
-                            color: "#f9bc60"
-                        }
+                    //     background: Rectangle {
+                    //         radius: 8
+                    //         color: "#f9bc60"
+                    //     }
 
-                        contentItem: Text {
-                            text: parent.text
-                            color: "#001e1d"
-                            font.pixelSize: 13
-                        }
+                    //     contentItem: Text {
+                    //         text: parent.text
+                    //         color: "#001e1d"
+                    //         font.pixelSize: 13
+                    //     }
 
-                    }
+                    // }
 
-                    Button {
-                        text: "Mist OFF"
-                        enabled: false
+                    // Button {
+                    //     text: "Mist OFF"
+                    //     enabled: false
 
-                        background: Rectangle {
-                            radius: 8
-                            color: "#f9bc60"
-                        }
+                    //     background: Rectangle {
+                    //         radius: 8
+                    //         color: "#f9bc60"
+                    //     }
 
-                        contentItem: Text {
-                            text: parent.text
-                            color: "#001e1d"
-                            font.pixelSize: 13
-                        }
+                    //     contentItem: Text {
+                    //         text: parent.text
+                    //         color: "#001e1d"
+                    //         font.pixelSize: 13
+                    //     }
 
-                    }
+                    // }
                 }
             }
         }
