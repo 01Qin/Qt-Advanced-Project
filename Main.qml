@@ -5,6 +5,7 @@ import QtQuick.Window
 import QtCharts
 
 Window {
+    id: root
     width: 1200
     height: 700
     visible: true
@@ -21,6 +22,7 @@ Window {
     property bool tempLow: environment.valid && environment.temp < minTemp
     property bool tempHigh: environment.valid && environment.temp > maxTemp
     property bool alertShown: false
+    property string activeMetric: ""
 
     property color humidityColor:
         humidityHigh ? "#e16162" : // mold risk
@@ -298,6 +300,9 @@ Window {
         }
     }
 
-
+// Component.onCompleted: {
+//     console.log("Humidity:", environment.humidty)
+//     console.log("Humidity:", environment.temp)
+// }
 
 }
