@@ -11,14 +11,16 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    QQmlApplicationEngine engine;
-
     EnvironmentModel environment;
     OpenMeteo meteo (&environment);
     meteo.start();
 
+    QQmlApplicationEngine engine;
+
     engine.rootContext()->setContextProperty("environment", &environment);
+    engine.load(QUrl(QStringLiteral("qrc:/qt/qml/Smart_Terrarium/Main.qml")));
     engine.rootContext()->setContextProperty("simulator", &meteo);
+
 
     QObject::connect(
         &engine,
