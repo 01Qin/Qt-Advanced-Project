@@ -4,6 +4,7 @@
 #include "OpenMeteo.h"
 #include <QQmlContext>
 
+
 int main(int argc, char *argv[])
 {
     qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));

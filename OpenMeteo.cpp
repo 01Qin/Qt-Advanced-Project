@@ -25,9 +25,10 @@ void OpenMeteo::stop(){
 }
 
 void OpenMeteo::fetchData(){
-    QUrl url("https://api.open-meteo.com/v1/forecast"
-             "?latitude=52.52&longitude=13.41"
-             "&current=temperature_2m,relative_humidity_2m"
+    QUrl url("https://api.open-meteo.com/v1/forecast?latitude=60.2276"
+             "&longitude=24.8873&daily=temperature_2m_max,temperature_2m_min"
+             "&hourly=temperature_2m,relative_humidity_2m"
+             "&current=temperature_2m,relative_humidity_2m,is_day&timezone=auto"
 
              );
 
@@ -57,7 +58,7 @@ void OpenMeteo::fetchData(){
 
 void OpenMeteo::fetchHistoryData(){
     QUrl url("https://api.open-meteo.com/v1/forecast"
-             "?latitude=52.52&longitude=13.41"
+             "?latitude=60.2276&longitude=24.8873"
              "&past_days=10"
              "&daily=temperature_2m_max,temperature_2m_min"
              "&relative_humidity_2m_mean"
