@@ -34,6 +34,11 @@ Window {
         tempLow ? "#004643" : // too clod
                       "#abd1c6" // healthy
 
+    Component.onCompleted: {
+        console.log("Humidity:", environment.humidty)
+        console.log("Humidity:", environment.temp)
+    }
+
     // background
     Item {
         anchors.fill: parent
@@ -300,9 +305,6 @@ Window {
         }
     }
 
-// Component.onCompleted: {
-//     console.log("Humidity:", environment.humidty)
-//     console.log("Humidity:", environment.temp)
-// }
+
 
 }
