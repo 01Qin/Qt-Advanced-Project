@@ -18,6 +18,7 @@ void EnvironmentModel::setHumidity (double value){
     m_humidityHistory.append(value);
     emit humidityChanged(m_humidity);
     emit humidityHistoryChanged();
+    emit validChanged();
 }
 
 void EnvironmentModel::setTemp(double value){
@@ -27,6 +28,7 @@ void EnvironmentModel::setTemp(double value){
     m_tempHistory.append(value);
     emit tempChanged(m_temp);
     emit tempHistoryChanged();
+    emit validChanged();
 }
 
 void EnvironmentModel::setSource (const QString &value){
