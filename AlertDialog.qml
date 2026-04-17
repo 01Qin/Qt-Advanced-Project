@@ -13,11 +13,11 @@ Dialog {
     // public api
     property string titleText: ""
     property string messageText: ""
-    property string serverity: "Warning"
+    property string severity: "Warning"
 
     // Dialog background
     background: Rectangle{
-        radius: 20
+        radius: 16
         color: "White"
 
         // soft shadow
@@ -31,10 +31,9 @@ Dialog {
     }
 
     // content
-    contentItem: Column {
-        width: 360
-        spacing: 18
-        padding: 24
+    Column {
+        spacing: 12
+        width: parent.width
 
         // header
         Row {
@@ -66,7 +65,6 @@ Dialog {
             text: messageText
             wrapMode: Text.Wrap
             font.pixelSize: 14
-            width: 300
             color: "#444"
         }
 
@@ -90,7 +88,7 @@ Dialog {
                 verticalAlignment: Text.AlignHCenter
             }
 
-            onClicked: dialog.close()
+            onClicked: alertDialog.close()
         }
     }
 
