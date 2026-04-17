@@ -257,7 +257,7 @@ Window {
     onHumidityHighChanged: {
         if (humidityHigh){
             alertDialog.titleText = "Mold Risk"
-            alertDialog.messageText = "humidity is too high (" + Math.round(environment.humidity) +
+            alertDialog.messageText = "Humidity is too high (" + Math.round(environment.humidity) +
                     "%).\nRisk of mold growth."
             alertDialog.open()
         }
@@ -270,7 +270,7 @@ Window {
     onHumidityLowChanged: {
         if (humidityLow){
             alertDialog.titleText = "Low Humidity"
-            alertDialog.messageText = "humidity is too low (" + Math.round(environment.humidity) +
+            alertDialog.messageText = "Humidity is too low (" + Math.round(environment.humidity) +
                     "%).\nPlants may dry out."
             alertDialog.open()
         }
