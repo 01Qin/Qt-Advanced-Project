@@ -25,7 +25,7 @@ Item {
     Rectangle{
         anchors.fill: parent
         radius: 20
-        color: active ? cardColor : Qt.darker(cardColor, 1.3)
+        color: active || cardColor !== "#abd1c6" ? cardColor : Qt.darker(cardColor, 1.3)
 
         Column {
             anchors.centerIn: parent
@@ -48,7 +48,7 @@ Item {
 
             Text {
                 // visible:true
-                text: Math.round(numericValue) + " " + unit
+                text: isNaN(numericValue) ? "--" : Math.round(numericValue) + " " + unit
                 font.pixelSize: 20
                 font.weight: Font.Bold
                 color: "white"
