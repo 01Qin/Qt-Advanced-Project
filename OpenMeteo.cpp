@@ -24,41 +24,48 @@ void OpenMeteo::stop(){
 
 }
 
-void OpenMeteo::fetchData(){
-    QUrl url("https://api.open-meteo.com/v1/forecast"
-             "?latitude=60.2276"
-             "&longitude=24.8873"
-             "&current_weather=true"
-             "&hourly=temperature_2m,relative_humidity_2m"
-             "&timezone=auto"
-
-             );
+void OpenMeteo::fetchData()
+{
+    QUrl url(
+        "https://api.open-meteo.com/v1/forecast"
+        "?latitude=60.2276"
+        "&longitude=24.8873"
+        "&hourly=temperature_2m,relative_humidity_2m"
+        "&timezone=auto"
+        );
 
     QNetworkRequest request(url);
     auto reply = m_network.get(request);
 
-    connect(reply, &QNetworkReply::finished, this, [this,reply] {
-        if (reply->error() != QNetworkReply::NoError){
+    connect(reply, &QNetworkReply::finished, this, [this, reply] {
+        if (reply->error() != QNetworkReply::NoError) {
             reply->deleteLater();
             return;
         }
 
-        const QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+        const QJsonDocument doc =
+            QJsonDocument::fromJson(reply->readAll());
         const QJsonObject root = doc.object();
-
-        const QJsonObject currentWeather = root["current_weather"].toObject();
-        double temp = currentWeather["temperature_2m"].toDouble();
-
         const QJsonObject hourly = root["hourly"].toObject();
-        const QJsonArray humidityArr = hourly["relative_humidity_2m"].toArray();
-        double humidity = humidityArr.isEmpty() ? 0.0 : humidityArr.first().toDouble();
+
+        const QJsonArray tempArr =
+            hourly["temperature_2m"].toArray();
+        const QJsonArray humidityArr =
+            hourly["relative_humidity_2m"].toArray();
+
+        if (tempArr.isEmpty() || humidityArr.isEmpty()) {
+            reply->deleteLater();
+            return;
+        }
+
+        double temp = tempArr.first().toDouble();
+        double humidity = humidityArr.first().toDouble();
 
         m_environment->setTemp(temp);
         m_environment->setHumidity(humidity);
         m_environment->setSource("Open-Meteo");
 
         reply->deleteLater();
-
     });
 }
 
