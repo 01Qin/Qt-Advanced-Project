@@ -41,7 +41,7 @@ Dialog {
             anchors.horizontalCenter: parent.horizontalCenter
 
             Text {
-                text: serverity === "critical" ? "🚨" : "⚠️"
+                text: severity === "critical" ? "🚨" : "⚠️"
                 font.pixelSize: 26
             }
 
@@ -49,7 +49,7 @@ Dialog {
                 text: titleText
                 font.pixelSize: 20
                 font.weight: Font.DemiBold
-                color: serverity === "critical" ? "#c62828" : "#efc600"
+                color: severity === "critical" ? "#c62828" : "#efc600"
             }
         }
 
@@ -76,7 +76,7 @@ Dialog {
 
             background: Rectangle {
                 radius: 12
-                color: serverity === "critical" ? "#c62828" : "#efc600"
+                color: severity === "critical" ? "#c62828" : "#efc600"
             }
 
             contentItem: Text {
