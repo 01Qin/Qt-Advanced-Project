@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 
 Item {
+    id: root
     width: 150
     height: 180
 
@@ -18,14 +19,25 @@ Item {
         anchors.fill: parent
         radius: 20
         y: active ? 14 : 10
-        color: "#200000000"
+        color: "#25000000"
     }
 
 // card
     Rectangle{
+        id: card
         anchors.fill: parent
         radius: 20
-        color: active || cardColor !== "#abd1c6" ? cardColor : Qt.darker(cardColor, 1.3)
+        border.width: active ? 2 : 0
+        border.color: "white"
+        scale: active ? 1.04 : 1.0
+
+        Behavior on scale {
+            NumberAnimation {
+                duration: 200;
+                easing.type: Easing.OutCubic
+            }
+        }
+
 
         Column {
             anchors.centerIn: parent
