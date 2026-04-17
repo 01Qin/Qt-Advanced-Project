@@ -3,11 +3,12 @@ import QtQuick.VirtualKeyboard
 import QtQuick.Controls
 
 Dialog {
-    id: dialog
+    id: alertDialog
     modal: true
-    focus: true
-    closePolicy: Popup.NoAutoClose
-    padding: 0
+    anchors.centerIn: parent
+    width:360
+    padding: 20
+
 
     // public api
     property string titleText: ""
@@ -63,7 +64,7 @@ Dialog {
         // message
         Text {
             text: messageText
-            wrapMode: Text.wrapMode
+            wrapMode: Text.Wrap
             font.pixelSize: 14
             width: 300
             color: "#444"
