@@ -27,17 +27,13 @@ Window {
     property color humidityColor:
         humidityHigh ? "#e16162" : // mold risk
         humidityLow ? "#f9bc60" : // too dry
+
                       "#abd1c6" // healthy
 
     property color tempColor:
         tempHigh ? "#e16162" : // too hot
         tempLow ? "#004643" : // too clod
                       "#abd1c6" // healthy
-
-    Component.onCompleted: {
-        console.log("Humidity:", environment.humidty)
-        console.log("Humidity:", environment.temp)
-    }
 
     // background
     Item {
