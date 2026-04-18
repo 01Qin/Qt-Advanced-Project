@@ -12,7 +12,7 @@ QVariantList EnvironmentModel::humidityHistory() const {return m_humidityHistory
 
 
 void EnvironmentModel::setHumidity (double value){
-    if (m_humidity == value) return;
+    // if (m_humidity == value) return;
     m_humidity = value;
     m_valid = true;
     m_humidityHistory.append(value);
