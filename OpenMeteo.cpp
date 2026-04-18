@@ -8,13 +8,13 @@
 OpenMeteo::OpenMeteo(EnvironmentModel *environment, QObject *parent)
     : QObject(parent), m_environment(environment){
 
-    m_Timer.setInterval(5000); // fresh every 5 sec
+    m_Timer.setInterval(60000); // fresh every 1 hour
     connect (&m_Timer, &QTimer::timeout, this, &OpenMeteo::fetchData);
 }
 
 void OpenMeteo::start(){
+    fetchHistoryData();
     fetchData();
-    // fetchHistoryData();
     m_Timer.start();
 
 }
@@ -107,6 +107,12 @@ void OpenMeteo::fetchHistoryData(){
         for (int i = 0; i < tempMax.size() && i < humidityMean.size(); ++i){
             m_environment->setTemp(tempMax[i].toDouble());
             m_environment->setHumidity(humidityMean[i].toDouble());
+
+        }
+
+        for (int i = 0; i < tempMax.size() && i < humidityMean.size(); ++i){
+            m_environment->appendTemHistory(tempMax[i].toDouble());
+            m_environment->appendHumidityHistory(humidityMean[i].toDouble());
 
         }
         reply->deleteLater();
