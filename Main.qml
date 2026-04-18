@@ -113,7 +113,7 @@ Window {
                 width: 460
                 height: 200
                 anchors.horizontalCenter:parent.horizontalCenter
-                metric: activeMetric
+                metric: activeMetric // humidity or temp
                 dataPoints: activeMetric == "humidity" ? environment.humidityHistory : environment.tempHistory
                 color: activeMetric == "humidity" ? humidityColor : tempColor
                 onCloseRequested: activeMetric = ""
