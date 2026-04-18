@@ -24,11 +24,13 @@ Window {
     property bool alertShown: false
     property string activeMetric: ""
 
-    property color humidityColor:
-        humidityHigh ? "#e16162" : // mold risk
-        humidityLow ? "#f9bc60" : // too dry
+    property color humidityColor: {
+        if (!environment.valid) return "#abd1c6"
+        if (environment.humidity > maxHumidity) return "#e16162" // Red
+        if (environment.humidity < minHumidity) return "#f9bc60" // Orange
+        return "#abd1c6" // Green
+    }
 
-                      "#abd1c6" // healthy
 
     property color tempColor:
         tempHigh ? "#e16162" : // too hot
@@ -103,6 +105,19 @@ Window {
                     onClicked: activeMetric = "temperature"
 
                 }
+            }
+
+            // history panel
+            HistoryChart {
+                visible: activeMetric !== ""
+                width: 460
+                height: 200
+                anchors.horizontalCenter:parent.horizontalCenter
+                metric: activeMetric
+                dataPoints: activeMetric == "humidity" ? environment.humidityHistory : environment.tempHistory
+                color: activeMetric == "humidity" ? humidityColor : tempColor
+                onCloseRequested: activeMetric = ""
+
             }
 
     // status
