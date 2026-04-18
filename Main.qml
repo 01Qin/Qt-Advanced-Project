@@ -87,7 +87,7 @@ Window {
                     unit: "%"
                     iconSource:"humidity/humidity.png"
                     cardColor: humidityColor
-                    active: activeMetric === "humidity" ? "" : "humidity"
+                    active: activeMetric === "humidity"
                     onClicked: {
                         activeMetric = "humidity"
                     }
@@ -95,12 +95,12 @@ Window {
 
                 SensorCard{
                     label: "Temperature"
-                    numericValue: environment.valid ? environment.temp : NaN
+                    numericValue: environment.valid
                     unit: "°C"
                     iconSource:"temp/temperature.png"
                     cardColor: tempColor
                     active: activeMetric === "temperature"
-                    onClicked: activeMetric = "temperature" ? "" : "temperature"
+                    onClicked: activeMetric = "temperature"
 
                 }
             }
