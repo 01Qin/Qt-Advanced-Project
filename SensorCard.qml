@@ -38,6 +38,12 @@ Item {
             }
         }
 
+        Behavior on border.width {
+            NumberAnimation{
+                duration: 150
+            }
+        }
+
 
         Column {
             anchors.centerIn: parent
@@ -47,15 +53,15 @@ Item {
                 source: iconSource
                 width: 36
                 height: 36
-                opacity: active ? 1.0 : 0.5
                 fillMode: Image.PreserveAspectFit
-                visible: iconSource !== ""
+                // visible: iconSource !== ""
             }
 
             Text {
                 text: label
                 font.pixelSize: 14
-                color: "#c8e6c9"
+                color: "#f5f5f5"
+                opacity: 0.9
             }
 
             Text {
@@ -73,25 +79,24 @@ Item {
                 }
             }
         }
-    }
 
+}
     MouseArea{
         anchors.fill: parent
         onClicked: parent.clicked()
         cursorShape: Qt.PointingHandCursor
     }
 
-
     Behavior on active {
         NumberAnimation{
-            duration: 300
+            duration: 30
             easing.type: Easing.InOutQuad
         }
     }
 
     Behavior on numericValue {
         NumberAnimation{
-            duration: 500
+            duration: 50
             easing.type: Easing.InOutQuad
         }
     }
@@ -101,7 +106,7 @@ Item {
         ColorAnimation {
             from: "#3a8f3a"
             to: "#c62828"
-            duration: 400
+            duration: 40
             easing.type: Easing.InOutQuad
         }
     }
