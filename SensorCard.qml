@@ -12,14 +12,15 @@ Item {
     property color cardColor: "#3a8f3a"
     property real numericValue: 0
     property bool active: false
+    property bool hovered: mouse.containsMouse
     signal clicked()
 
  // shadow
     Rectangle{
         anchors.fill: parent
         radius: 20
-        y: active ? 14 : 10
-        color: "#25000000"
+        y: active ? 16 : hovered ? 13: 10
+        color: hovered || active ? "#30000000" : "#25000000"
     }
 
 // card
@@ -30,7 +31,7 @@ Item {
         color: cardColor
         border.width: active ? 2 : 0
         border.color: "white"
-        scale: active ? 1.04 : 1.0
+        scale: active ? 1.04 : hovered ? 1.02 : 1.0
 
         Behavior on scale {
             NumberAnimation {
@@ -83,9 +84,11 @@ Item {
 
 }
     MouseArea{
+        id: mouse
         anchors.fill: parent
-        onClicked: parent.clicked()
         cursorShape: Qt.PointingHandCursor
+        hoverEnabled: true
+        onClicked: root.clicked()
     }
 
     Behavior on active {
