@@ -14,7 +14,7 @@ OpenMeteo::OpenMeteo(EnvironmentModel *environment, QObject *parent)
 
 void OpenMeteo::start(){
     fetchData();
-    fetchHistoryData();
+    // fetchHistoryData();
     m_Timer.start();
 
 }
@@ -28,8 +28,7 @@ void OpenMeteo::fetchData()
 {
     QUrl url(
         "https://api.open-meteo.com/v1/forecast"
-        "?latitude=60.2276"
-        "&longitude=24.8873"
+        "?latitude=60.2276&longitude=24.8873"
         "&hourly=temperature_2m,relative_humidity_2m"
         "&timezone=auto"
         );
@@ -48,6 +47,18 @@ void OpenMeteo::fetchData()
         const QJsonObject root = doc.object();
         const QJsonObject hourly = root["hourly"].toObject();
 
+        const QJsonArray timerArr = hourly["time"].toArray();
+        const QString nowStr = QDateTime::currentDateTimeUtc().toString("yyyy-MM-ddThhh:00");
+
+        int idx = 0;
+        for (int i =0; i < timerArr.size(); ++i){
+            if (timerArr[i].toString() == nowStr){
+                idx = 1;
+                break;
+            }
+        }
+
+
         const QJsonArray tempArr =
             hourly["temperature_2m"].toArray();
         const QJsonArray humidityArr =
@@ -58,8 +69,8 @@ void OpenMeteo::fetchData()
             return;
         }
 
-        double temp = tempArr.first().toDouble();
-        double humidity = humidityArr.first().toDouble();
+        double temp = tempArr[idx].toDouble();
+        double humidity = humidityArr[idx].toDouble();
 
         m_environment->setTemp(temp);
         m_environment->setHumidity(humidity);
@@ -73,8 +84,7 @@ void OpenMeteo::fetchHistoryData(){
     QUrl url("https://api.open-meteo.com/v1/forecast"
              "?latitude=60.2276&longitude=24.8873"
              "&past_days=10"
-             "&daily=temperature_2m_max"
-             "&relative_humidity_2m_mean"
+             "&daily=temperature_2m_max, relative_humidity_2m_mean"
              "&timezone=auto"
 
              );
