@@ -38,6 +38,51 @@ Item {
             }
         }
 
+        Text {
+            id: chartTitle
+            text: root.metric === "humidity" ? "Humidity History (%)" : "Temperature History (°C)"
+            color: "white"
+            font.pixelSize: 13
+            font.bold: true
+            anchors.top: parent.top
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.topMargin: 12
+        }
 
+        ChartView {
+            anchors.top: chartTitle.bottom
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.margins: 8
+            backgroundColor: "transparent"
+            plotAreaColor: "transparent"
+            legend.visible: false
+            antialiasing: true
+            margins.top: 0
+            margins.bottom: o
+            margins.left: 0
+            margins.right: 0
+
+            ValueAxis {
+                id: axisX
+                min: 0
+                max: Math.max(root.dataPoints.length - 1, 1)
+                labelsColor: "#aaaaaa"
+                labelsFont.pixelSize: 10
+                gridLineColor: "#33ffffff"
+                tickCount: 5
+            }
+
+            ValueAxis {
+                id: axisY
+                min: root.metric == "humidity" ? 0 : -10
+                max: root.metric == "humidity" ? 100 : 40
+                labelsColor: "#aaaaaa"
+                labelsFont.pixelSize: 10
+                gridLineColor: "#33ffffff"
+                tickCount: 5
+            }
+        }
     }
 }
