@@ -95,7 +95,7 @@ Window {
 
                 SensorCard{
                     label: "Temperature"
-                    numericValue: environment.valid
+                    numericValue: environment.valid ? environment.temp : NaN
                     unit: "°C"
                     iconSource:"temp/temperature.png"
                     cardColor: tempColor
@@ -278,13 +278,13 @@ Window {
 
     // Temperature alerts
     onTempHighChanged: {
-        if (temperatureHigh){
+        if (tempHigh){
             alertDialog.titleText = "High Temperature"
             alertDialog.messageText = "Temperature is too high (" + environment.temp.toFixed(1) +
             "°C)."
             alertDialog.open()
         }
-        if (!temperatureHigh){
+        if (!tempHigh){
             alertShown= false
         }
     }
