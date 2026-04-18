@@ -27,20 +27,21 @@ Item {
         id: card
         anchors.fill: parent
         radius: 20
+        color: cardColor
         border.width: active ? 2 : 0
         border.color: "white"
         scale: active ? 1.04 : 1.0
 
         Behavior on scale {
             NumberAnimation {
-                duration: 200;
+                duration: 20
                 easing.type: Easing.OutCubic
             }
         }
 
         Behavior on border.width {
             NumberAnimation{
-                duration: 150
+                duration: 15
             }
         }
 
@@ -73,7 +74,7 @@ Item {
 
                 Behavior on text {
                     NumberAnimation{
-                        duration: 300
+                        duration: 30
                         easing.type: Easing.InOutQuad
                     }
                 }
