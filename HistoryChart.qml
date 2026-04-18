@@ -83,6 +83,24 @@ Item {
                 gridLineColor: "#33ffffff"
                 tickCount: 5
             }
+
+            LineSeries {
+                id: series
+                axisX: axisX
+                axisY: axisY
+                width: 2
+            }
+
+            Component.onCompleted: root.rebuildSeries()
         }
     }
+
+    function rebuildSeries(){
+        series.clear()
+        for (var i =0; i < dataPoints.length; i++){
+            series.append(i, dataPoints[i])
+        }
+    }
+
+    onDataPointsChanged: rebuildSeries()
 }
