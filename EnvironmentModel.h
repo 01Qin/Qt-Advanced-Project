@@ -30,6 +30,8 @@ public slots:
     void setHumidity(double value);
     void setTemp (double value);
     void setSource (const QString &value);
+    void appendTemHistory(double value);
+    void appendHumidityHistory(double value);
 
 signals:
     void humidityChanged(double value);
