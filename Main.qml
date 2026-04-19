@@ -32,10 +32,11 @@ Window {
     }
 
 
-    property color tempColor:
-        tempHigh ? "#e16162" : // too hot
-        tempLow ? "#004643" : // too clod
-                      "#abd1c6" // healthy
+    property color tempColor: {
+        if (!environment.valid) return "#abd1c6"
+        if (environment.temp > maxTemp) return "#e16162" // too warm
+        if (environment.temp < minTemp) return "#004643" // too cold
+}
 
     // background
     Item {
