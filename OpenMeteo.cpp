@@ -48,12 +48,12 @@ void OpenMeteo::fetchData()
         const QJsonObject hourly = root["hourly"].toObject();
 
         const QJsonArray timerArr = hourly["time"].toArray();
-        const QString nowStr = QDateTime::currentDateTimeUtc().toString("yyyy-MM-ddThhh:00");
+        const QString nowStr = QDateTime::currentDateTimeUtc().toString("yyyy-MM-ddThh:00");
 
         int idx = 0;
         for (int i =0; i < timerArr.size(); ++i){
             if (timerArr[i].toString() == nowStr){
-                idx = 1;
+                idx = i;
                 break;
             }
         }
@@ -84,7 +84,7 @@ void OpenMeteo::fetchHistoryData(){
     QUrl url("https://api.open-meteo.com/v1/forecast"
              "?latitude=60.2276&longitude=24.8873"
              "&past_days=10"
-             "&daily=temperature_2m_max, relative_humidity_2m_mean"
+             "&daily=temperature_2m_max,relative_humidity_2m_mean"
              "&timezone=auto"
 
              );
