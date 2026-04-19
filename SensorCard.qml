@@ -35,14 +35,14 @@ Item {
 
         Behavior on scale {
             NumberAnimation {
-                duration: 20
+                duration: 200
                 easing.type: Easing.OutCubic
             }
         }
 
         Behavior on border.width {
             NumberAnimation{
-                duration: 15
+                duration: 150
             }
         }
 
@@ -75,7 +75,7 @@ Item {
 
                 Behavior on text {
                     NumberAnimation{
-                        duration: 30
+                        duration: 300
                         easing.type: Easing.InOutQuad
                     }
                 }
@@ -93,14 +93,14 @@ Item {
 
     Behavior on active {
         NumberAnimation{
-            duration: 30
+            duration: 300
             easing.type: Easing.InOutQuad
         }
     }
 
     Behavior on numericValue {
         NumberAnimation{
-            duration: 50
+            duration: 500
             easing.type: Easing.InOutQuad
         }
     }
@@ -108,9 +108,7 @@ Item {
     Behavior on cardColor {
 
         ColorAnimation {
-            from: "#3a8f3a"
-            to: "#c62828"
-            duration: 40
+            duration: 400
             easing.type: Easing.InOutQuad
         }
     }
