@@ -102,7 +102,9 @@ Window {
                     label: "Temperature"
                     numericValue: environment.valid ? environment.temp : NaN
                     unit: "°C"
-                    iconSource:"temp/temperature.png"
+                    iconSource: tempHigh ? "temp/temp_high.png"
+                                : tempLow ? "temp/temp_low.png"
+                                :"temp/temperature.png"
                     cardColor: tempColor
                     active: activeMetric === "temperature"
                     onClicked: activeMetric = "temperature"
