@@ -88,7 +88,9 @@ Window {
 
                     numericValue: environment.valid ? environment.humidity : NaN
                     unit: "%"
-                    iconSource:"humidity/humidity.png"
+                    iconSource: humidityHigh ? "humidity/humidity_high.png"
+                                : humidityLow ? "humidity/humidity_low.png"
+                                              : "humidity/humidity.png"
                     cardColor: humidityColor
                     active: activeMetric === "humidity"
                     onClicked: {
