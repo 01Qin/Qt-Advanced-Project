@@ -13,7 +13,7 @@ OpenMeteo::OpenMeteo(EnvironmentModel *environment, QObject *parent)
         fetchData();
         fetchHistoryData();
     });
-
+}
 
 void OpenMeteo::start(){
     fetchHistoryData();
@@ -117,5 +117,4 @@ void OpenMeteo::fetchHistoryData(){
 
 
     });
-}
 }
