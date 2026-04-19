@@ -9,8 +9,11 @@ OpenMeteo::OpenMeteo(EnvironmentModel *environment, QObject *parent)
     : QObject(parent), m_environment(environment){
 
     m_Timer.setInterval(60000); // fresh every 1 hour
-    connect (&m_Timer, &QTimer::timeout, this, &OpenMeteo::fetchData);
-}
+    connect (&m_Timer, &QTimer::timeout, this, [this](){
+        fetchData();
+        fetchHistoryData();
+    });
+
 
 void OpenMeteo::start(){
     fetchHistoryData();
@@ -114,4 +117,5 @@ void OpenMeteo::fetchHistoryData(){
 
 
     });
+}
 }
