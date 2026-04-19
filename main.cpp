@@ -1,4 +1,5 @@
 #include <QGuiApplication>
+#include <QQuickWindow>
 #include <QQmlApplicationEngine>
 #include "EnvironmentModel.h"
 #include "OpenMeteo.h"
@@ -7,6 +8,8 @@
 
 int main(int argc, char *argv[])
 {
+    qputenv("LIBGL_ALWAYS_SOFTWARE", "1");
+    qputenv("MESA_LOADER_DRIVER_OVERRIDE", "llvmpipe");
     qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
 
     QGuiApplication app(argc, argv);
