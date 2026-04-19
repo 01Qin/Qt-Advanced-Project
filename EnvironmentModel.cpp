@@ -42,3 +42,13 @@ bool EnvironmentModel::valid() const{
     return m_valid;
 }
 
+void EnvironmentModel ::appendTempHistory (double value) {
+    m_tempHistory.append(value);
+    emit tempHistoryChanged();
+}
+
+void EnvironmentModel :: appendHumidityHistory(double value) {
+    m_humidityHistory.append(value);
+    emit humidityHistoryChanged();
+}
+
