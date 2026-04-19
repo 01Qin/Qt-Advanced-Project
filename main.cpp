@@ -1,5 +1,4 @@
-#include <QGuiApplication>
-#include <QQuickWindow>
+#include <QApplication>
 #include <QQmlApplicationEngine>
 #include "EnvironmentModel.h"
 #include "OpenMeteo.h"
@@ -10,18 +9,20 @@ int main(int argc, char *argv[])
 {
     qputenv("LIBGL_ALWAYS_SOFTWARE", "1");
     qputenv("MESA_LOADER_DRIVER_OVERRIDE", "llvmpipe");
+    qputenv("GALLIUM_DRIVER", "llvmpipe");
+    qputenv("QT_QUICK_BACKEND", "software");
     qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
 
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
 
     EnvironmentModel environment;
     OpenMeteo meteo (&environment);
-    meteo.start();
+
 
     QQmlApplicationEngine engine;
 
+    // register all context properties before and load()
     engine.rootContext()->setContextProperty("environment", &environment);
-    engine.load(QUrl(QStringLiteral("qrc:/qt/qml/Smart_Terrarium/Main.qml")));
     engine.rootContext()->setContextProperty("simulator", &meteo);
 
 
@@ -31,7 +32,10 @@ int main(int argc, char *argv[])
         &app,
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
+
     engine.loadFromModule("Smart_Terrarium", "Main");
+
+    meteo.start();
 
     return QCoreApplication::exec();
 }
