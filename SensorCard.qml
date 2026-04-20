@@ -75,7 +75,7 @@ Item {
 
                 Behavior on text {
                     NumberAnimation{
-                        duration: 300
+                        duration: 30
                         easing.type: Easing.InOutQuad
                     }
                 }
