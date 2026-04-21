@@ -227,39 +227,25 @@ Window {
 
                     // }
 
-                    // Button {
-                    //     text: "Mist ON"
-                    //     enabled: false
 
-                    //     background: Rectangle {
-                    //         radius: 8
-                    //         color: "#f9bc60"
-                    //     }
 
-                    //     contentItem: Text {
-                    //         text: parent.text
-                    //         color: "#001e1d"
-                    //         font.pixelSize: 13
-                    //     }
+                    Button {
+                        text: "Mist OFF"
+                        enabled: false
 
-                    // }
 
-                    // Button {
-                    //     text: "Mist OFF"
-                    //     enabled: false
+                        background: Rectangle {
+                            radius: 10
+                            color: "#f9bc60"
+                        }
 
-                    //     background: Rectangle {
-                    //         radius: 8
-                    //         color: "#f9bc60"
-                    //     }
+                        contentItem: Text {
+                            text: parent.text
+                            color: "#001e1d"
+                            font.pixelSize: 15
+                        }
 
-                    //     contentItem: Text {
-                    //         text: parent.text
-                    //         color: "#001e1d"
-                    //         font.pixelSize: 13
-                    //     }
-
-                    // }
+                    }
                 }
             }
         }
