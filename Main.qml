@@ -140,7 +140,7 @@ Window {
                 Text {
 
                     text: environment.humidity > 85 ? "Mold Risk" : "Mold Risk: Low"
-                    font.pixelSize: 13
+                    font.pixelSize: 17
                     font.bold: true
                     color: environment.humidity > 85 ? "#c62828" : "#fffffe"
                 }
@@ -155,7 +155,7 @@ Window {
 
                 Text {
                     text: qsTr("Mode: Online")
-                    font.pixelSize: 13
+                    font.pixelSize: 17
                     font.bold: true
                     color: "#fffffe"
                 }
