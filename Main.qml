@@ -49,6 +49,7 @@ Window {
         }
 
         Column {
+            id: mainContent
             anchors.centerIn: parent
             anchors.margins: 40
             spacing: 28
@@ -115,26 +116,7 @@ Window {
                 }
             }
 
-            Rectangle {
-                id: dimOverlay
-                anchors.fill: parent
-                z: 5
-                visible: opacity > 0
-                color: "#000000"
-                opacity: activeMetric = "" ? 0.45 : 0.0 // dim strength
 
-                Behavior on opacity {
-                    NumberAnimation {
-                        duration: 200
-                        easing.type: Easing.InOutQuad
-                    }
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: activeMetric = ""
-                }
-            }
 
             // history panel
                 HistoryChart {
@@ -274,6 +256,8 @@ Window {
                 }
             }
         }
+
+
     }
 
     AlertDialog{
