@@ -115,19 +115,40 @@ Window {
                 }
             }
 
-            // history panel
-            HistoryChart {
-                visible: activeMetric !== ""
-                z: 10
-                width: 460
-                height: 200
-                anchors.horizontalCenter:parent.horizontalCenter
-                metric: activeMetric // humidity or temp
-                dataPoints: activeMetric == "humidity" ? environment.humidityHistory : environment.tempHistory
-                color: activeMetric == "humidity" ? humidityColor : tempColor
-                onCloseRequested: activeMetric = ""
+            Rectangle {
+                id: dimOverlay
+                anchors.fill: parent
+                z: 5
+                visible: opacity > 0
+                color: "#000000"
+                opacity: activeMetric = "" ? 0.45 : 0.0 // dim strength
 
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: 200
+                        easing.type: Easing.InOutQuad
+                    }
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: activeMetric = ""
+                }
             }
+
+            // history panel
+                HistoryChart {
+                    visible: activeMetric !== ""
+                    z: 10
+                    width: 460
+                    height: 200
+
+                    anchors.horizontalCenter:parent.horizontalCenter
+                    metric: activeMetric // humidity or temp
+                    dataPoints: activeMetric == "humidity" ? environment.humidityHistory : environment.tempHistory
+                    color: activeMetric == "humidity" ? humidityColor : tempColor
+                    onCloseRequested: activeMetric = ""
+                }
 
     // status
     Rectangle{
