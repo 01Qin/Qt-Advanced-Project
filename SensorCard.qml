@@ -13,6 +13,7 @@ Item {
     property real numericValue: 0
     property bool active: false
     property bool hovered: mouse.containsMouse
+
     signal clicked()
 
  // shadow
