@@ -120,6 +120,23 @@ Window {
                 }
             }
 
+            Text {
+                text: "Tap a card to view history 💬"
+                font.pixelSize: 12
+                font.bold: true
+                color: "#fffffe"
+                opacity: activeMetric ==="" ? 0.8 : 0
+                horizontalAlignment: Text.AlignHCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                Behavior on opacity {
+                    NumberAnimation{
+                        duration: 200
+                        easing.type: Easing.InOutQuad
+                    }
+                }
+            }
+
 
 
             // history panel
