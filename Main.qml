@@ -85,7 +85,8 @@ Window {
 
                 SensorCard{
                     label: "Humidity"
-
+                    visible: activeMetric === ""
+                    enabled: visible
                     numericValue: environment.valid ? environment.humidity : NaN
                     unit: "%"
                     iconSource: humidityHigh ? "humidity/humidity_high.png"
@@ -100,6 +101,8 @@ Window {
 
                 SensorCard{
                     label: "Temperature"
+                    visible: activeMetric === ""
+                    enabled: visible
                     numericValue: environment.valid ? environment.temp : NaN
                     unit: "°C"
                     iconSource: tempHigh ? "temp/temp_high.png"
@@ -115,6 +118,7 @@ Window {
             // history panel
             HistoryChart {
                 visible: activeMetric !== ""
+                z: 10
                 width: 460
                 height: 200
                 anchors.horizontalCenter:parent.horizontalCenter
