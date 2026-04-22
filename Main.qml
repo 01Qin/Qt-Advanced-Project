@@ -22,6 +22,7 @@ Window {
     property bool tempLow: environment.valid && environment.temp < minTemp
     property bool tempHigh: environment.valid && environment.temp > maxTemp
     property bool alertShown: false
+    property bool mistOn: false
     property string activeMetric: ""
 
     property color humidityColor: {
@@ -258,19 +259,27 @@ Window {
 
 
                     Button {
-                        text: "Mist OFF"
-                        enabled: false
+                        text: mistOn ? "Mist ON" : "Mist OFF"
+                        enabled: true
 
 
                         background: Rectangle {
                             radius: 10
-                            color: "#f9bc60"
+                            color: mistOn ? "#abd1c6" : "#f9bc60"
                         }
 
                         contentItem: Text {
                             text: parent.text
                             color: "#001e1d"
                             font.pixelSize: 15
+                            font.bold: true
+                        }
+
+                        onClicked: {
+                            mqttClient.publish(
+                                        "terrarium/mist",
+                                        mistOn ? "OFF" : "ON"
+)
                         }
 
                     }
