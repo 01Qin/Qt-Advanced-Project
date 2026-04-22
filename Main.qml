@@ -6,8 +6,8 @@ import QtCharts
 
 Window {
     id: root
-    width: 1200
-    height: 700
+    minimumWidth:  360
+    minimumHeight: 640
     visible: true
     title: qsTr("Smart Terrarium 🪴")
 
