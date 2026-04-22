@@ -74,10 +74,25 @@ Item {
                 font.weight: Font.Bold
                 color: "white"
 
+
                 Behavior on text {
                     NumberAnimation{
                         duration: 30
                         easing.type: Easing.InOutQuad
+                    }
+                }
+            }
+
+            Text {
+                text: "View history"
+                font.pixelSize: 11
+                color: "#fffffe"
+                opacity: hovered ? 0.8 : 0
+                horizontalAlignment: Text.AlignHCenter
+
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: 150
                     }
                 }
             }
