@@ -46,6 +46,8 @@ Window {
             id: backgroundImage
             anchors.fill: parent
             source: "images/background.jpg"
+            fillMode: Image.PreserveAspectCrop
+            smooth: true
         }
 
         Column {
