@@ -48,6 +48,8 @@ Window {
             source: "images/background.jpg"
             fillMode: Image.PreserveAspectCrop
             smooth: true
+            horizontalAlignment: Image.AlignHCenter
+            verticalAlignment: Image.AlignVCenter
         }
 
         Column {
