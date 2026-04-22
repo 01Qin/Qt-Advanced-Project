@@ -65,11 +65,11 @@ Dialog {
             text: messageText
             wrapMode: Text.Wrap
             font.pixelSize: 14
-            color: "#444"
+            color: "#001e1d"
         }
 
         Button {
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenter: parent.horizontalCentext
             text: "OK"
             width: 120
             height: 40
