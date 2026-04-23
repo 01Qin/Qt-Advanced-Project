@@ -260,13 +260,13 @@ Window {
 
 
                     Button {
-                        text: mistOn ? "Mist ON" : "Mist OFF"
+                        text: mqtt.mistOn ? "Mist ON" : "Mist OFF"
                         enabled: true
 
 
                         background: Rectangle {
                             radius: 10
-                            color: mistOn ? "#abd1c6" : "#f9bc60"
+                            color: mqtt.mistOn ? "#abd1c6" : "#f9bc60"
                         }
 
                         contentItem: Text {
@@ -276,12 +276,7 @@ Window {
                             font.bold: true
                         }
 
-                        onClicked: {
-                            mqttClient.publish(
-                                        "terrarium/mist",
-                                        mistOn ? "OFF" : "ON"
-)
-                        }
+                        onClicked: mqtt.setMist(!mqtt.mistOn)
 
                     }
                 }
