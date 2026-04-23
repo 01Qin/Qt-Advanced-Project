@@ -4,6 +4,7 @@ import QtQuick.Controls
 import QtQuick.Window
 import QtCharts
 
+
 Window {
     id: root
     minimumWidth:  360
@@ -27,8 +28,8 @@ Window {
 
     property color humidityColor: {
         if (!environment.valid) return "#abd1c6"
-        if (environment.humidity > maxHumidity) return "#e16162" // Red
-        if (environment.humidity < minHumidity) return "#f9bc60" // Orange
+        if (environment.humidity > maxHumidity) return "#e16162" // too humid
+        if (environment.humidity < minHumidity) return "#f9bc60" // too dry
         return "#abd1c6" // Green
     }
 
