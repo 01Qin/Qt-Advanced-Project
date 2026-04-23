@@ -1,8 +1,11 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
+#include <QtMqtt/QtMqtt>
 #include "EnvironmentModel.h"
 #include "OpenMeteo.h"
 #include <QQmlContext>
+#include "mqtt_controller.h"
+
 
 
 int main(int argc, char *argv[])
@@ -18,12 +21,20 @@ int main(int argc, char *argv[])
     EnvironmentModel environment;
     OpenMeteo meteo (&environment);
 
+    // mqtt
+    QMqttClient mqttClient;
+    mqttClient.setHostname("broker.hivemq.com");
+    mqttClient.setPort(1883);
+    mqttClient.connectToHost();
+    MqttController mqttController(&mqttClient);
+
 
     QQmlApplicationEngine engine;
 
     // register all context properties before and load()
     engine.rootContext()->setContextProperty("environment", &environment);
     engine.rootContext()->setContextProperty("simulator", &meteo);
+    engine.rootContext()->setContextProperty("mqtt", &mqttController);
 
 
     QObject::connect(
