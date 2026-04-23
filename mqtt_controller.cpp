@@ -4,9 +4,9 @@ MqttController::MqttController (QObject *parent)
     : QObject(parent) {}
 
 
-    void MqttController ::handleMqttmsg(const QString &topic const QByteArray &payload)
+    void MqttController ::handleMqttmsg(const QString &topic, const QByteArray &payload)
     {
-        if (topic == "terririum/mist"){
+        if (topic == "terrarium/mist"){
             bool newState = (payload == "ON");
 
             if (m_mistOn != newState){
