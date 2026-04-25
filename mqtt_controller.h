@@ -3,7 +3,8 @@
 
 #pragma once
 #include <QObject>
-#include <QMqttClient>
+#include <QtMqtt/QMqttClient>
+#include <QtMqtt/QMqttTopicName>
 
 class MqttController : public QObject
 {
@@ -21,11 +22,11 @@ signals:
     void connectedChanged();
 
 public slots:
-    void handleMqttmsg(const QString &topic, const QByteArray &payload);
+    void handleMqttmsg(const QByteArray &payload, const QMqttTopicName &topic);
     Q_INVOKABLE void setMist (bool on);
 
 private:
-    QMqttClient *m_Client = nullptr;
+    QMqttClient *m_client = nullptr;
     bool m_mistOn = false;
     bool m_connected = false;
 };
