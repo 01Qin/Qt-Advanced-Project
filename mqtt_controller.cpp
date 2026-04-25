@@ -3,6 +3,14 @@
 MqttController::MqttController (QMqttClient *client, QObject *parent)
     : QObject(parent), m_client(client)
 {
+    connect (m_client, &QMqttClient :: stateChanged, this, QMqttClient :: ClientState state{
+        bool nowConnected = (state == QMqttClient :: Connected);
+        if (m_connected != nowConnected) {
+            m_connected = nowConnected;
+            emit connectedChanged();
+                                                         });
+
+    // receive message
     connect(m_client, &QMqttClient::msgReceived, this, &MqttController::handleMqttmsg);
 }
 
@@ -20,7 +28,9 @@ MqttController::MqttController (QMqttClient *client, QObject *parent)
     }
 
     void MqttController::setMist(bool on){
-        mqttClient->publis("terrarium/mist", on ? "ON" : "OFF");
+        if (m_client) {
+            m_client->publish("terrarium/mist", on ? "ON" : "OFF");
+        }
 
         if (m_mistOn != on){
             m_mistOn = on;
