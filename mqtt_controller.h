@@ -25,7 +25,7 @@ public slots:
     Q_INVOKABLE void setMist (bool on);
 
 private:
-    QMqttClient *mqttClient = nullptr;
+    QMqttClient *m_Client = nullptr;
     bool m_mistOn = false;
     bool m_connected = false;
 };
