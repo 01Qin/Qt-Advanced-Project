@@ -9,10 +9,19 @@ MqttController::MqttController (QMqttClient *client, QObject *parent)
             m_connected = nowConnected;
             emit connectedChanged();
         }
-                                                         });
+     });
+
+    connect(&QMqttClient, &QMqttClient::stateChanged, &mqttClient, [&](QMqttClient::ClientState state){
+        if (state == QMqttClient::Connected){
+            mqttClient.subscribe("terrarium/mist");
+
+        }
+    });
+
 
     // receive message
     connect(m_client, &QMqttClient::messageReceived, this, &MqttController::handleMqttmsg);
+
 }
 
 
