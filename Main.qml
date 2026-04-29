@@ -258,16 +258,30 @@ Window {
 
                     // }
 
+                Column {
+                    anchors.centerIn: parent
+                    spacing: 8
 
+                    Text {
+                        text: mqtt.connected ? "Connected" : "Disconnected"
+                        font.pixelSize: 11
+                        color: "#fffffe"
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
 
                     Button {
                         text: mqtt.mistOn ? "Mist ON" : "Mist OFF"
-                        enabled: true
+                        enabled: mqtt.connected
+                        opacity: mqtt.connected ? 1.0 : 0.5
 
 
                         background: Rectangle {
                             radius: 10
                             color: mqtt.mistOn ? "#abd1c6" : "#f9bc60"
+                            Behavior on color {
+
+                                ColorAnimation { duration: 300 }
+                            }
                         }
 
                         contentItem: Text {
@@ -275,6 +289,7 @@ Window {
                             color: "#001e1d"
                             font.pixelSize: 15
                             font.bold: true
+                            horizontalAlignment: Text.AlignHCenter
                         }
 
                         onClicked: mqtt.setMist(!mqtt.mistOn)
@@ -345,4 +360,5 @@ Window {
 
 
 
+}
 }
