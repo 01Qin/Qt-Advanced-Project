@@ -71,7 +71,7 @@ Dialog {
         }
 
         Button {
-            anchors.horizontalCenter: parent.horizontalCentext
+            anchors.horizontalCenter: parent.horizontalCenter
             text: "OK"
             width: 120
             height: 40
@@ -85,9 +85,10 @@ Dialog {
                 text: "OK"
                 color: "white"
                 font.pixelSize: 14
+                anchors.fill: parent
                 font.weight: Font.Medium
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+
             }
 
             onClicked: alertDialog.close()
