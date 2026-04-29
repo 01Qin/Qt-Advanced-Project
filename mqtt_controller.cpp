@@ -1,4 +1,5 @@
 #include "mqtt_controller.h"
+#include <QtMqtt/QMqttTopicFilter>
 
 MqttController::MqttController (QMqttClient *client, QObject *parent)
     : QObject(parent), m_client(client)
@@ -14,7 +15,7 @@ MqttController::MqttController (QMqttClient *client, QObject *parent)
     connect(m_client, &QMqttClient::stateChanged, this, [this](QMqttClient::ClientState state){
 
         if (state == QMqttClient::Connected){
-            m_client->subscribe("terrarium/mist");
+            m_client->subscribe(QMqttTopicFilter("terrarium/mist"), 0);
 
         }
     });
