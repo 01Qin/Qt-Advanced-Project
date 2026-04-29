@@ -6,7 +6,7 @@ Dialog {
     id: alertDialog
     modal: true
     anchors.centerIn: parent
-    width:360
+    width: 360
     padding: 20
 
 
@@ -63,9 +63,11 @@ Dialog {
         // message
         Text {
             text: messageText
+            width: parent.width
             wrapMode: Text.Wrap
             font.pixelSize: 14
             color: "#001e1d"
+            horizontalAlignment: Text.AlignHCenter
         }
 
         Button {
