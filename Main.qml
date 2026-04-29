@@ -23,7 +23,6 @@ Window {
     property bool tempLow: environment.valid && environment.temp < minTemp
     property bool tempHigh: environment.valid && environment.temp > maxTemp
     property bool alertShown: false
-    property bool mistOn: false
     property string activeMetric: ""
 
     property color humidityColor: {
@@ -38,6 +37,7 @@ Window {
         if (!environment.valid) return "#abd1c6"
         if (environment.temp > maxTemp) return "#e16162" // too warm
         if (environment.temp < minTemp) return "#004643" // too cold
+        return "#abd1c6"
 }
 
     // background
