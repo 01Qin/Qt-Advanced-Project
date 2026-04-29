@@ -30,6 +30,7 @@ MqttController::MqttController (QMqttClient *client, QObject *parent)
 
     void MqttController ::handleMqttmsg(const QByteArray &payload, const QMqttTopicName &topic)
     {
+
         if (topic.name() == "terrarium/mist"){
             bool newState = (payload == "ON");
 
@@ -43,7 +44,7 @@ MqttController::MqttController (QMqttClient *client, QObject *parent)
     void MqttController::setMist(bool on){
         if (m_client && m_connected) {
             m_client->publish(QMqttTopicName("terrarium/mist"),
-                              on ? QByteArray("ON") : QByteArray("OFF"));
+                              on ? QByteArray("Mist On") : QByteArray("Mist Off"));
         }
 
         if (m_mistOn != on){
