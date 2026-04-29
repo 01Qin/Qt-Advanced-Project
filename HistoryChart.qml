@@ -68,7 +68,7 @@ Item {
                 id: axisX
                 min: 0
                 max: Math.max(root.dataPoints.length - 1, 1)
-                labelsColor: "#aaaaaa"
+                labelsColor: "#fffffe"
                 labelsFont.pixelSize: 10
                 gridLineColor: "#33ffffff"
                 tickCount: 5
@@ -78,7 +78,7 @@ Item {
                 id: axisY
                 min: root.metric == "humidity" ? 0 : -10
                 max: root.metric == "humidity" ? 100 : 40
-                labelsColor: "#aaaaaa"
+                labelsColor: "#fffffe"
                 labelsFont.pixelSize: 10
                 gridLineColor: "#33ffffff"
                 tickCount: 5
@@ -89,6 +89,7 @@ Item {
                 axisX: axisX
                 axisY: axisY
                 width: 2
+                color: "white"
             }
 
             Component.onCompleted: root.rebuildSeries()
