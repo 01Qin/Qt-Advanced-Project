@@ -18,6 +18,7 @@ Window {
     property real minTemp: 18
     property real maxTemp: 26
 
+    property real alertHumidityValue: NaN
     property bool humidityLow: environment.valid && environment.humidity < minHumidity
     property bool humidityHigh: environment.valid && environment.humidity > maxHumidity
     property bool tempLow: environment.valid && environment.temp < minTemp
@@ -243,6 +244,7 @@ Window {
                             font.pixelSize: 15
                             font.bold: true
                             horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
                         }
 
                         onClicked: mqtt.setMist(!mqtt.mistOn)
@@ -274,6 +276,7 @@ Window {
 
     onHumidityLowChanged: {
         if (humidityLow){
+            alertHumidityValue = environment.humidity
             alertDialog.titleText = "Low Humidity 🟠​"
             alertDialog.messageText = "Humidity is too low (" + Math.round(environment.humidity) +
                     "%).\nPlants may dry out."
