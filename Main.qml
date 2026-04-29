@@ -223,6 +223,8 @@ Window {
 
                     Button {
                         text: mqtt.mistOn ? "💦​Mist ON" : "💨 Mist OFF"
+                        width: 120
+                        height: 40
                         enabled: mqtt.connected
                         opacity: mqtt.connected ? 1.0 : 0.5
 
