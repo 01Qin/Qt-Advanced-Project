@@ -38,7 +38,7 @@ Window {
         if (environment.temp > maxTemp) return "#e16162" // too warm
         if (environment.temp < minTemp) return "#004643" // too cold
         return "#abd1c6"
-}
+    }
 
     // background
     Item {
@@ -102,9 +102,7 @@ Window {
                                               : "humidity/humidity.png"
                     cardColor: humidityColor
                     active: activeMetric === "humidity"
-                    onClicked: {
-                        activeMetric = "humidity"
-                    }
+                    onClicked: activeMetric = "humidity"
                 }
 
                 SensorCard{
@@ -156,43 +154,34 @@ Window {
                     onCloseRequested: activeMetric = ""
                 }
 
-    // status
-    Rectangle{
-        width: parent.width
-        height: 44
-        radius: 12
-        color: "transparent"
+            // status bar
+            Rectangle{
+                width: parent.width
+                height: 44
+                radius: 12
+                color: "transparent"
 
-        Row {
-            anchors.centerIn: parent
-            spacing: 32
+                Row {
+                    anchors.centerIn: parent
+                    spacing: 32
 
+                    Text {
 
-                Text {
+                        text: environment.humidity > 85 ? "Mold Risk" : "Mold Risk: Low"
+                        font.pixelSize: 17
+                        font.bold: true
+                        color: environment.humidity > 85 ? "#c62828" : "#fffffe"
+                    }
 
-                    text: environment.humidity > 85 ? "Mold Risk" : "Mold Risk: Low"
-                    font.pixelSize: 17
-                    font.bold: true
-                    color: environment.humidity > 85 ? "#c62828" : "#fffffe"
+                    Text {
+                        text: qsTr("Mode: Online")
+                        font.pixelSize: 17
+                        font.bold: true
+                        color: "#fffffe"
+                    }
                 }
 
-                // Text {
-
-                //     text: qsTr("Mode: AUTO")
-                //     font.pixelSize: 13
-                //     font.bold: true
-                //     color: "#fffffe"
-                // }
-
-                Text {
-                    text: qsTr("Mode: Online")
-                    font.pixelSize: 17
-                    font.bold: true
-                    color: "#fffffe"
-                }
-        }
-
-    }
+            }
 
 
             // metadata
@@ -216,47 +205,10 @@ Window {
                 radius: 20
                 color: "transparent"
 
-
-                Row {
-                    anchors.bottom: parent.bottom
-                    anchors.centerIn: parent
-                    spacing: 16
-
-
-                    // Button {
-                    //     text: simulator.running ? "Stop Simulation" : "Start Simulation"
-                    //     onClicked: simulator.running ? simulator.stop() : simulator.start()
-
-                    //     background: Rectangle {
-                    //         radius: 8
-                    //         color: "#f9bc60"
-                    //     }
-
-                    //     contentItem: Text {
-                    //         text: parent.text
-                    //         color: "#001e1d"
-                    //         font.pixelSize: 13
-                    //     }
-
-                    // }
-
-                    // Button {
-                    //     text: "Auto Mode"
-                    //     enabled: false
-
-                    //     background: Rectangle {
-                    //         radius: 8
-                    //         color: "#f9bc60"
-                    //     }
-
-                    //     contentItem: Text {
-                    //         text: parent.text
-                    //         color: "#001e1d"
-                    //         font.pixelSize: 13
-                    //     }
-
-
-                    // }
+                // Row {
+                //     anchors.bottom: parent.bottom
+                //     anchors.centerIn: parent
+                //     spacing: 16
 
                 Column {
                     anchors.centerIn: parent
@@ -280,8 +232,7 @@ Window {
                             color: mqtt.mistOn ? "#abd1c6" : "#f9bc60"
                             Behavior on color {
 
-                                ColorAnimation { duration: 300 }
-                            }
+                                ColorAnimation { duration: 300 }}
                         }
 
                         contentItem: Text {
@@ -298,9 +249,8 @@ Window {
                 }
             }
         }
-
-
     }
+
 
     AlertDialog{
         id: alertDialog
@@ -358,7 +308,4 @@ Window {
         }
     }
 
-
-
-}
 }
