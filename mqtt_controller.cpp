@@ -40,8 +40,9 @@ MqttController::MqttController (QMqttClient *client, QObject *parent)
     }
 
     void MqttController::setMist(bool on){
-        if (m_client) {
-            m_client->publish(QMqttTopicName("terrarium/mist"), on ? QByteArray("ON") : QByteArray("OFF"));
+        if (m_client && m_connected) {
+            m_client->publish(QMqttTopicName("terrarium/mist"),
+                              on ? QByteArray("ON") : QByteArray("OFF"));
         }
 
         if (m_mistOn != on){
