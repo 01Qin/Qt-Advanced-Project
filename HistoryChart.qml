@@ -17,23 +17,33 @@ Item {
         }
     }
 
+    // close Button
     Rectangle {
         anchors.fill: parent
         radius: 20
         color: "#cc000000"
 
-        // close Button
-        Text {
-
-            text: qsTr("x")
-            color: "white"
+        Rectangle{
+            id: closeButton
+            width: 28
+            height: 28
+            radius: 6
+            color: "#001e1d"
             anchors.top: parent.top
             anchors.right: parent.right
-            anchors.margins: 12
-            font.pixelSize: 16
+            anchors.margins: 10
 
+
+        Text {
+            text: qsTr("x")
+            color: "#e8e4e6"
+            anchors.centerIn: parent
+            font.pixelSize: 16
+            font.bold: true
+        }
             MouseArea {
                 anchors.fill: parent
+                hoverEnabled: true
                 onClicked: root.closeRequested()
             }
         }
