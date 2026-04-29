@@ -72,9 +72,10 @@ Dialog {
 
         Button {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "OK"
+            text: ""
             width: 120
             height: 40
+            padding: 0
 
             background: Rectangle {
                 radius: 12
@@ -88,6 +89,7 @@ Dialog {
                 anchors.fill: parent
                 font.weight: Font.Medium
                 verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
 
             }
 
