@@ -89,10 +89,11 @@ Window {
             Row {
                 spacing: 32
                 anchors.horizontalCenter: parent.horizontalCenter
+                height: 180 // fix the row height so layout doesn't jump
 
                 SensorCard{
                     label: "Humidity"
-                    visible: activeMetric === ""
+                    visible: activeMetric === "" ? 1 : 0
                     enabled: visible
                     numericValue: environment.valid ? environment.humidity : NaN
                     unit: "%"
@@ -108,7 +109,7 @@ Window {
 
                 SensorCard{
                     label: "Temperature"
-                    visible: activeMetric === ""
+                    visible: activeMetric === "" ? 1: 0
                     enabled: visible
                     numericValue: environment.valid ? environment.temp : NaN
                     unit: "°C"
