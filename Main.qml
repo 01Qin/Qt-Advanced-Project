@@ -215,14 +215,14 @@ Window {
                     spacing: 8
 
                     Text {
-                        text: mqtt.connected ? "Connected" : "Disconnected"
+                        text: mqtt.connected ? "Connected ✅" : "Disconnected ❗"
                         font.pixelSize: 11
                         color: "#fffffe"
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     Button {
-                        text: mqtt.mistOn ? "Mist ON" : "Mist OFF"
+                        text: mqtt.mistOn ? "💦​Mist ON" : "💨 Mist OFF"
                         enabled: mqtt.connected
                         opacity: mqtt.connected ? 1.0 : 0.5
 
@@ -259,7 +259,7 @@ Window {
     // Humidity alerts
     onHumidityHighChanged: {
         if (humidityHigh){
-            alertDialog.titleText = "Mold Risk"
+            alertDialog.titleText = "Mold Risk​🔴​"
             alertDialog.messageText = "Humidity is too high (" + Math.round(environment.humidity) +
                     "%).\nRisk of mold growth."
             alertDialog.open()
@@ -272,7 +272,7 @@ Window {
 
     onHumidityLowChanged: {
         if (humidityLow){
-            alertDialog.titleText = "Low Humidity"
+            alertDialog.titleText = "Low Humidity 🟠​"
             alertDialog.messageText = "Humidity is too low (" + Math.round(environment.humidity) +
                     "%).\nPlants may dry out."
             alertDialog.open()
@@ -286,7 +286,7 @@ Window {
     // Temperature alerts
     onTempHighChanged: {
         if (tempHigh){
-            alertDialog.titleText = "High Temperature"
+            alertDialog.titleText = "High Temperature 🥵"
             alertDialog.messageText = "Temperature is too high (" + environment.temp.toFixed(1) +
             "°C)."
             alertDialog.open()
@@ -298,7 +298,7 @@ Window {
 
     onTempLowChanged: {
         if (tempLow){
-            alertDialog.titleText = "Low Temperature"
+            alertDialog.titleText = "Low Temperature 🥶"
             alertDialog.messageText = "Temperature is too low (" + environment.temp.toFixed(1) +
             "°C)."
             alertDialog.open()
