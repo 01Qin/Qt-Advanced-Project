@@ -11,12 +11,14 @@ MqttController::MqttController (QMqttClient *client, QObject *parent)
         }
      });
 
-    connect(&QMqttClient, &QMqttClient::stateChanged, &mqttClient, [&](QMqttClient::ClientState state){
+    connect(m_client, &QMqttClient::stateChanged, this, [this](QMqttClient::ClientState state){
+
         if (state == QMqttClient::Connected){
-            mqttClient.subscribe("terrarium/mist");
+            m_client->subscribe("terrarium/mist");
 
         }
     });
+
 
 
     // receive message
