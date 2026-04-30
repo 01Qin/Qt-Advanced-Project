@@ -78,14 +78,15 @@ Item {
             CategoryAxis {
                 id: axisX
                 min: 0
-                max: Math.max(root.dataPoints.length - 1, 1)
+                max: 1
                 labelsColor: "#fffffe"
                 labelsFont.pixelSize: 10
+                labelsAngle: -45
                 gridLineColor: "#33ffffff"
                 tickCount: 5
             }
 
-            CategoryAxis {
+            ValueAxis {
                 id: axisY
                 min: root.metric == "humidity" ? 0 : -10
                 max: root.metric == "humidity" ? 100 : 40
