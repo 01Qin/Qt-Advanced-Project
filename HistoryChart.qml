@@ -71,7 +71,7 @@ Item {
             legend.visible: false
             antialiasing: true
             margins.top: 0
-            margins.bottom: 0
+            margins.bottom: 24
             margins.left: 0
             margins.right: 0
 
