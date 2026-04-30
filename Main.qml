@@ -224,7 +224,7 @@ Window {
                     Text {
                         text: mqtt.connected ? "Connected ✅" : "Disconnected ❗"
                         font.pixelSize: 11
-
+                        font.bold: true
                         color: "#fffffe"
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
