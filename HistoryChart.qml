@@ -109,11 +109,19 @@ Item {
 
     function rebuildSeries(){
         series.clear()
+        var existing = axisX.categoriesLabels
+        for (var j = existing.length - 1; j >= 0; j--){
+            axisX.remove(existing[j])
+        }
+        if (dataPoints.length === 0) return
 
-        while (axisX.count > 0) axisX.remove(axisX.categoriesLabels[0])
+        axisX.min = 0
+        axisX.max = dataPoints.length - 1
+
+
         for (var i =0; i < dataPoints.length; i++){
             series.append(i, dataPoints[i])
-            var label = (dateLabels.length > i) ? dateLabels[i] : ("D-" + (dateLabels.length - 1 - i))
+            var label = (dateLabels && dateLabels.length > i) ? dateLabels[i] : String(i)
             axisX.append(label, i)
         }
     }
