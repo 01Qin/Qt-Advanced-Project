@@ -107,10 +107,16 @@ void OpenMeteo::fetchHistoryData(){
         const QJsonObject daily = root["daily"].toObject();
         QJsonArray tempMax = daily["temperature_2m_max"].toArray();
         QJsonArray humidityMean = daily["relative_humidity_2m_mean"].toArray();
+        QJsonArray timeArr = daily["time"].toArray();
 
         for (int i = 0; i < tempMax.size() && i < humidityMean.size(); ++i){
             m_environment->appendTempHistory(tempMax[i].toDouble());
             m_environment->appendHumidityHistory(humidityMean[i].toDouble());
+
+            if (i < timeArr.size()){
+                QDate date = QDate::fromString(timeArr[i].toString(), "yyyy-MM-dd");
+                m_environment->appendDateHistory(date.toString("MMM d"));
+            }
 
         }
         reply->deleteLater();
