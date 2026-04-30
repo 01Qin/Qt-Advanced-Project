@@ -114,13 +114,27 @@ Item {
         if(!dataPoints || dataPoints.length === 0)
             return
 
+        var minTime = null
+        var maxTime = null
+
+
         for (var i =0; i < dataPoints.length; i++){
-            // var label = (dateLabels && dateLabels.length > i) ? dateLabels[i] : String(i)
-            series.append(new Date(dateLabels[i].getTime(), dataPoints[i]))
+            var dateStr = (dateLabels && dateLabels.length > i) ? dateLabels[i] : ""
+            var date = new Date(dateStr)
+
+            if(isNaN(date.getTime())) continue
+            if (!minTime || date < minTime) minTime = date
+            if (!maxTime || date > maxTime) maxTime = date
+            series.append(date.getTime(), dataPoints[i])
+        }
+
+        if(minTime && maxTime){
+            axisX.min = minTime
+            axisX.max = maxTime
         }
     }
 
-    onDataPointsChanged: rebuildSeries()
-    onMetricChanged: rebuildSeries()
-    // onDateLabelsChanged: rebuildSeries()
+    // onDataPointsChanged: rebuildSeries()
+    // onMetricChanged: rebuildSeries()
+    // // onDateLabelsChanged: rebuildSeries()
 }
