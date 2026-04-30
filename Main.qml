@@ -88,7 +88,7 @@ Window {
 
             // Sensor area
             Item {
-                width: 460
+                width: 560
                 anchors.horizontalCenter: parent.horizontalCenter
                 height: 300 // fix the row height so layout doesn't jump
 
