@@ -134,7 +134,7 @@ Item {
         }
     }
 
-    // onDataPointsChanged: rebuildSeries()
-    // onMetricChanged: rebuildSeries()
-    // // onDateLabelsChanged: rebuildSeries()
+    onDataPointsChanged: rebuildSeries()
+    onMetricChanged: rebuildSeries()
+    onDateLabelsChanged: rebuildSeries()
 }
