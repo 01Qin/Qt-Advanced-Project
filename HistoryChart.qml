@@ -75,15 +75,15 @@ Item {
             margins.left: 0
             margins.right: 0
 
-            CategoryAxis {
+            DateTimeAxis {
                 id: axisX
-                min: 0
-                max: 1
+                format: "MMM d"
+
                 labelsColor: "#fffffe"
                 labelsFont.pixelSize: 10
                 labelsAngle: -45
                 gridLineColor: "#33ffffff"
-                tickCount: 11 // one per day
+
             }
 
             ValueAxis {
@@ -110,22 +110,17 @@ Item {
 
     function rebuildSeries(){
         series.clear()
-        var existing = axisX.categoriesLabels
-        for (var j = existing.length - 1; j >= 0; j--){
-            axisX.remove(existing[j])
-        }
-        if (dataPoints.length === 0) return
 
-        axisX.min = 0
-        axisX.max = dataPoints.length - 1
-
+        if(!dataPoints || dataPoints.length === 0)
+            return
 
         for (var i =0; i < dataPoints.length; i++){
-            series.append(i, dataPoints[i])
-            var label = (dateLabels && dateLabels.length > i) ? dateLabels[i] : String(i)
-            axisX.append(label, i)
+            // var label = (dateLabels && dateLabels.length > i) ? dateLabels[i] : String(i)
+            series.append(new Date(dateLabels[i].getTime(), dataPoints[i]))
         }
     }
 
     onDataPointsChanged: rebuildSeries()
+    onMetricChanged: rebuildSeries()
+    // onDateLabelsChanged: rebuildSeries()
 }
