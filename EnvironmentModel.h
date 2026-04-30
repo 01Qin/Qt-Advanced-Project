@@ -43,8 +43,8 @@ signals:
 
 
 private:
-    double m_humidity = 0.0;
-    double m_temp = 0.0;
+    double m_humidity = qQNaN();
+    double m_temp = qQNaN();
     QString m_source = "Unknown";
     QVariantList m_tempHistory;
     QVariantList m_humidityHistory;
