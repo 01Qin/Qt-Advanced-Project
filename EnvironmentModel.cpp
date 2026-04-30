@@ -66,3 +66,12 @@ void EnvironmentModel::appendDateHistory (const QString &date){
     emit dateHistoryChanged();
 }
 
+void EnvironmentModel::clearHistory(){
+    m_tempHistory.clear();
+    m_humidityHistory.clear();
+    m_dateHistory.clear();
+    emit tempHistoryChanged();
+    emit humidityHistoryChanged();
+    emit dateHistoryChanged();
+}
+
