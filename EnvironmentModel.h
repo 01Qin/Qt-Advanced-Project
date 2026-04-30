@@ -12,6 +12,7 @@ class EnvironmentModel : public QObject {
     Q_PROPERTY(QString source READ source WRITE setSource NOTIFY sourceChanged)
     Q_PROPERTY(QVariantList tempHistory READ tempHistory NOTIFY tempHistoryChanged)
     Q_PROPERTY(QVariantList humidityHistory READ humidityHistory NOTIFY humidityHistoryChanged)
+    Q_PROPERTY(QVariantList dateHistory READ dateHistory NOTIFY dateHistoryChanged)
     Q_PROPERTY(bool valid READ valid NOTIFY validChanged)
 
 public:
@@ -25,6 +26,7 @@ public:
     QString source() const;
     QVariantList tempHistory() const;
     QVariantList humidityHistory() const;
+    QVariantList dateHistory() const;
 
 public slots:
     void setHumidity(double value);
@@ -39,6 +41,7 @@ signals:
     void sourceChanged(const QString &value);
     void tempHistoryChanged();
     void humidityHistoryChanged();
+    void dateHistoryChanged();
     void validChanged();
 
 
@@ -48,6 +51,7 @@ private:
     QString m_source = "Unknown";
     QVariantList m_tempHistory;
     QVariantList m_humidityHistory;
+    QVariantList m_dateHistory;
     bool m_valid = false;
 };
 
