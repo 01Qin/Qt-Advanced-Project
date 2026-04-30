@@ -8,6 +8,7 @@ double EnvironmentModel::temp () const {return m_temp;}
 QString EnvironmentModel::source() const {return m_source;}
 QVariantList EnvironmentModel::tempHistory() const {return m_tempHistory;}
 QVariantList EnvironmentModel::humidityHistory() const {return m_humidityHistory;}
+QVariantList EnvironmentModel::dateHistory() const {return m_dateHistory; }
 
 
 
@@ -58,5 +59,10 @@ void EnvironmentModel ::appendTempHistory (double value) {
 void EnvironmentModel :: appendHumidityHistory(double value) {
     m_humidityHistory.append(value);
     emit humidityHistoryChanged();
+}
+
+void EnvironmentModel::appendDateHistory (const QString &date){
+    m_dateHistory.append(date);
+    emit dateHistoryChanged();
 }
 
