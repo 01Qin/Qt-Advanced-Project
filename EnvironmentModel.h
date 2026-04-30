@@ -35,6 +35,7 @@ public slots:
     void appendTempHistory(double value);
     void appendHumidityHistory(double value);
     void appendDateHistory(const QString &date);
+    void clearHistory();
 
 signals:
     void humidityChanged(double value);
