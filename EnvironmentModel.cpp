@@ -12,13 +12,17 @@ QVariantList EnvironmentModel::humidityHistory() const {return m_humidityHistory
 
 
 void EnvironmentModel::setHumidity (double value){
-    // if (m_humidity == value) return;
+    if (m_humidity == value) return;
     m_humidity = value;
     m_valid = true;
     m_humidityHistory.append(value);
     emit humidityChanged(m_humidity);
     emit humidityHistoryChanged();
-    emit validChanged();
+    if (!qIsNaN(m_temp)){
+        m_valid = true;
+        emit validChanged();
+    }
+
 }
 
 void EnvironmentModel::setTemp(double value){
@@ -28,7 +32,11 @@ void EnvironmentModel::setTemp(double value){
     m_tempHistory.append(value);
     emit tempChanged(m_temp);
     emit tempHistoryChanged();
-    emit validChanged();
+    if (!qIsNaN(m_humidity)){
+        m_valid = true;
+        emit validChanged();
+    }
+
 }
 
 void EnvironmentModel::setSource (const QString &value){
