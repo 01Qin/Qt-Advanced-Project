@@ -87,10 +87,17 @@ Window {
             }
 
             // Sensor area
-            Row {
-                spacing: 32
+            Item {
+                width: 460
                 anchors.horizontalCenter: parent.horizontalCenter
-                height: 180 // fix the row height so layout doesn't jump
+                height: 300 // fix the row height so layout doesn't jump
+
+                Row {
+                    spacing: 32
+                    anchors.centerIn: parent
+                    opacity: activeMetric === "" ? 1.0 : 0.0
+
+                    Behavior on opacity { NumberAnimation {duration:200}}
 
                 SensorCard{
                     label: "Humidity"
@@ -122,6 +129,20 @@ Window {
                 }
             }
 
+                // history panel
+                    HistoryChart {
+                        anchors.fill: parent
+                        visible: activeMetric !== ""
+
+                        anchors.horizontalCenter:parent.horizontalCenter
+                        metric: activeMetric // humidity or temp
+                        dataPoints: activeMetric == "humidity" ? environment.humidityHistory : environment.tempHistory
+                        color: activeMetric == "humidity" ? humidityColor : tempColor
+                        onCloseRequested: activeMetric = ""
+                    }
+                }
+
+
             Text {
                 text: "Tap a card to view history 💬"
                 font.pixelSize: 12
@@ -139,21 +160,6 @@ Window {
                 }
             }
 
-
-
-            // history panel
-                HistoryChart {
-                    visible: activeMetric !== ""
-                    z: 10
-                    width: 460
-                    height: 200
-
-                    anchors.horizontalCenter:parent.horizontalCenter
-                    metric: activeMetric // humidity or temp
-                    dataPoints: activeMetric == "humidity" ? environment.humidityHistory : environment.tempHistory
-                    color: activeMetric == "humidity" ? humidityColor : tempColor
-                    onCloseRequested: activeMetric = ""
-                }
 
             // status bar
             Rectangle{
@@ -206,11 +212,6 @@ Window {
                 radius: 20
                 color: "transparent"
 
-                // Row {
-                //     anchors.bottom: parent.bottom
-                //     anchors.centerIn: parent
-                //     spacing: 16
-
                 Column {
                     anchors.centerIn: parent
                     spacing: 8
@@ -218,6 +219,7 @@ Window {
                     Text {
                         text: mqtt.connected ? "Connected ✅" : "Disconnected ❗"
                         font.pixelSize: 11
+
                         color: "#fffffe"
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
