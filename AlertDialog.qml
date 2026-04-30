@@ -2,25 +2,29 @@ import QtQuick
 import QtQuick.VirtualKeyboard
 import QtQuick.Controls
 
+// Reusable modal alert popup with severity levels (warning / critical)
+// Usage: set titleText, messageText, severity, then call alertDialog.open()
+
 Dialog {
     id: alertDialog
-    modal: true
+    modal: true // blocks interaction with background
     anchors.centerIn: parent
     width: 360
     padding: 20
 
 
-    // public api
+    // ── Public API ───────────────────────────────────────────────────────
     property string titleText: ""
     property string messageText: ""
     property string severity: "Warning"
 
-    // Dialog background
+    // ── Background ───────────────────────────────────────────────────────
+    // White rounded card with a subtle drop shadow underneath
     background: Rectangle{
         radius: 16
         color: "White"
 
-        // soft shadow
+        // Drop shadow — slightly offset dark rectangle behind the card
         Rectangle {
             anchors.fill: parent
             radius: 20
@@ -30,16 +34,19 @@ Dialog {
         }
     }
 
-    // content
+
+    // ── Content ──────────────────────────────────────────────────────────
     Column {
         spacing: 12
         width: parent.width
 
-        // header
+        // Header row: emoji icon + title text
+        // Icon and color change based on severity level
         Row {
             spacing: 12
             anchors.horizontalCenter: parent.horizontalCenter
 
+            // 🚨 for critical alerts, ⚠️ for general warnings
             Text {
                 text: severity === "critical" ? "🚨" : "⚠️"
                 font.pixelSize: 26
@@ -49,18 +56,19 @@ Dialog {
                 text: titleText
                 font.pixelSize: 20
                 font.weight: Font.DemiBold
+                // Red for critical, yellow for warning
                 color: severity === "critical" ? "#c62828" : "#efc600"
             }
         }
 
-        // divider
+        // Horizontal divider between header and message body
         Rectangle {
             width: parent.width
             height: 1
             color: "#e0e0e0"
         }
 
-        // message
+        // Message body — wraps to multiple lines if needed
         Text {
             text: messageText
             width: parent.width
@@ -70,6 +78,8 @@ Dialog {
             horizontalAlignment: Text.AlignHCenter
         }
 
+        // Dismiss button — color matches severity
+        // Closes the dialog when tapped
         Button {
             anchors.horizontalCenter: parent.horizontalCenter
             text: ""
