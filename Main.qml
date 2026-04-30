@@ -55,11 +55,16 @@ Window {
             verticalAlignment: Image.AlignVCenter
         }
 
+        Item {
+            anchors.fill: parent
+            anchors.topMargin: 50
+            anchors.bottomMargin: 50
+
         Column {
             id: mainContent
             anchors.centerIn: parent
-            anchors.margins: 40
-            spacing: 28
+            spacing: 20
+            width: parent.width - 80
 
             // Header
             Column {
@@ -256,6 +261,7 @@ Window {
             }
         }
     }
+}
 
 
     AlertDialog{
