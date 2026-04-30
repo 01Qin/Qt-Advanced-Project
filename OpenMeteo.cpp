@@ -4,6 +4,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QDate>
 
 OpenMeteo::OpenMeteo(EnvironmentModel *environment, QObject *parent)
     : QObject(parent), m_environment(environment){
