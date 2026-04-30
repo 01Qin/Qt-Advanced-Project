@@ -133,7 +133,7 @@ Window {
                     HistoryChart {
                         anchors.fill: parent
                         visible: activeMetric !== ""
-
+                        dateLabels: environment.dateHistory
                         anchors.horizontalCenter:parent.horizontalCenter
                         metric: activeMetric // humidity or temp
                         dataPoints: activeMetric == "humidity" ? environment.humidityHistory : environment.tempHistory
