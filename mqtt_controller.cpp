@@ -43,12 +43,14 @@ MqttController::MqttController (QMqttClient *client, QObject *parent)
 
     void MqttController::setMist(bool on){
         if (m_client && m_connected) {
+
+            if (m_mistOn != on){
+                m_mistOn = on;
+                emit mistOnChanged();
+            }
+
             m_client->publish(QMqttTopicName("terrarium/mist"),
-                              on ? QByteArray("Mist On") : QByteArray("Mist Off"));
+                              on ? QByteArray("ON") : QByteArray("OFF"));
         }
 
-        if (m_mistOn != on){
-            m_mistOn = on;
-            emit mistOnChanged();
-        }
     }
