@@ -110,6 +110,8 @@ void OpenMeteo::fetchHistoryData(){
         QJsonArray humidityMean = daily["relative_humidity_2m_mean"].toArray();
         QJsonArray timeArr = daily["time"].toArray();
 
+        m_environment->clearHistory();
+
         for (int i = 0; i < tempMax.size() && i < humidityMean.size(); ++i){
             m_environment->appendTempHistory(tempMax[i].toDouble());
             m_environment->appendHumidityHistory(humidityMean[i].toDouble());
