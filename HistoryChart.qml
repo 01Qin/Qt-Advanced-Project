@@ -83,7 +83,7 @@ Item {
                 labelsFont.pixelSize: 10
                 labelsAngle: -45
                 gridLineColor: "#33ffffff"
-                tickCount: 5
+                tickCount: 11 // one per day
             }
 
             ValueAxis {
