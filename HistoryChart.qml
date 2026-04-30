@@ -7,6 +7,7 @@ Item {
     property string metric: "humidity"
     property var dataPoints: []
     property color color: "#abd1c6"
+    property var dateLabels: []
     signal closeRequested()
 
     // animate in
@@ -74,7 +75,7 @@ Item {
             margins.left: 0
             margins.right: 0
 
-            ValueAxis {
+            CategoryAxis {
                 id: axisX
                 min: 0
                 max: Math.max(root.dataPoints.length - 1, 1)
@@ -84,7 +85,7 @@ Item {
                 tickCount: 5
             }
 
-            ValueAxis {
+            CategoryAxis {
                 id: axisY
                 min: root.metric == "humidity" ? 0 : -10
                 max: root.metric == "humidity" ? 100 : 40
@@ -108,8 +109,12 @@ Item {
 
     function rebuildSeries(){
         series.clear()
+
+        while (axisX.count > 0) axisX.remove(axisX.categoriesLabels[0])
         for (var i =0; i < dataPoints.length; i++){
             series.append(i, dataPoints[i])
+            var label = (dateLabels.length > i) ? dateLabels[i] : ("D-" + (dateLabels.length - 1 - i))
+            axisX.append(label, i)
         }
     }
 
